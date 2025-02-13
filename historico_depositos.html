@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registros da Santander</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #A0D8F1, #5BB2F1); /* Azul água */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 100%;
+            max-width: 400px; /* Melhor ajuste para dispositivos móveis */
+        }
+
+        h2 {
+            margin-bottom: 24px;
+            color: #3498db; /* Azul mais claro */
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background-color: #3498db; /* Azul claro */
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #2980b9; /* Azul mais escuro */
+        }
+
+        .toggle-form {
+            margin-top: 20px;
+        }
+
+        .toggle-form a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        .toggle-form a:hover {
+            text-decoration: underline;
+        }
+        
+        .error {
+            color: red;
+            font-size: 14px;
+        }
+
+        .success {
+            color: green;
+            font-size: 14px;
+        }
+
+        .registro {
+            background-color: #f9f9f9;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+
+        .registro:hover {
+            transform: scale(1.05);
+        }
+
+        .registro .info {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .registro.red {
+            border-left: 5px solid #e74c3c; /* Cor de erro ou retirada */
+        }
+
+        .registro.white {
+            border-left: 5px solid #3498db; /* Cor de sucesso ou depósito */
+        }
+
+        /* Ajustes para dispositivos móveis */
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px;
+                width: 90%;
+            }
+
+            h2 {
+                font-size: 22px;
+            }
+
+            input, button {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Registros de Depósitos</h2>
+        <div id="registros-container">
+            <!-- Os registros de depósitos serão inseridos aqui -->
+        </div>
+        <div id="feedback-registros" class="feedback"></div>
+    </div>
+
+    <div class="modal-feedback" id="modal-feedback"></div> <!-- Modal de feedback -->
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const registrosContainer = document.getElementById('registros-container');
+            const feedbackRegistros = document.getElementById('feedback-registros');
+            const modalFeedback = document.getElementById('modal-feedback');
+
+            // Recuperar usuário logado do localStorage
+            const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+
+            // Verificar se o usuário está logado
+            if (!usuarioLogado) {
+                window.location.href = 'index.html'; // Se não estiver logado, redireciona para login
+            }
+
+            // Adicionando o Histórico de Depósitos
+            fetch('https://meuappi.onrender.com/depositos')  // Buscar todos os depósitos no banco de dados
+                .then(response => response.json())
+                .then(depositos => {
+                    // Filtrar depósitos do usuário logado
+                    const depositosUsuario = depositos.filter(deposito => deposito.usuarioId === usuarioLogado.id);
+
+                    // Exibir depósitos como cartões
+                    if (depositosUsuario.length === 0) {
+                        feedbackRegistros.textContent = 'Você não tem registros de depósitos ainda.';
+                        feedbackRegistros.className = 'error';
+                    } else {
+                        depositosUsuario.forEach(deposito => {
+                            const div = document.createElement('div');
+                            div.classList.add('registro', 'white');
+                            div.innerHTML = `
+                                <div class="info">
+                                    <span><strong>Data de Depósito:</strong> ${new Date(deposito.data).toLocaleString()}</span>
+                                    <span><strong>Valor:</strong> AKZ- ${deposito.valor}</span>
+                                    <span><strong>Banco:</strong> ${deposito.banco}</span>
+                                </div>
+                            `;
+                            registrosContainer.appendChild(div);
+                        });
+                    }
+                })
+                .catch(error => {
+                    feedbackRegistros.textContent = 'Erro ao carregar os registros de depósitos.';
+                    feedbackRegistros.className = 'error';
+                });
+        });
+    </script>
+</body>
+</html>

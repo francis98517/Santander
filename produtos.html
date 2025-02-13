@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 100%;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            margin: 20px auto;
+        }
+
+        h2 {
+            text-align: center;
+            color: #D32F2F; /* Vermelho claro */
+        }
+
+        .produtos {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .produto {
+            background-color: #00bcd4; /* Azul água */
+            border: 2px solid #00bcd4; /* Bordas azul água */
+            border-radius: 8px;
+            padding: 20px;
+            width: 100%;
+            max-width: 300px;
+            text-align: center;
+            position: relative;
+            box-sizing: border-box;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .produto:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .produto img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .produto h3 {
+            margin: 10px 0;
+            color: #fff; /* Cor do título */
+            font-size: 18px;
+        }
+
+        .produto p {
+            font-size: 14px;
+            color: #fff;
+        }
+
+        .botao-comprar {
+            background-color: #D32F2F; /* Botão vermelho */
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .botao-comprar:hover {
+            background-color: #C2185B; /* Cor do botão quando passa o mouse */
+        }
+
+        .feedback {
+            display: none; /* Começa escondido */
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            width: 80%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 9999;
+            font-size: 16px;
+        }
+
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .contador-regressivo {
+            font-size: 12px;
+            color: red;
+            position: absolute;
+            bottom: 10px;
+            left: 15px;
+        }
+
+        .indisponivel {
+            background-color: #f0f0f0;
+            color: #ccc;
+            pointer-events: none;
+        }
+
+        /* Media Queries */
+        @media (max-width: 600px) {
+            .produto {
+                width: 100%;
+            }
+
+            .botao-comprar {
+                font-size: 12px;
+                padding: 8px;
+            }
+
+            .produto h3 {
+                font-size: 16px;
+            }
+
+            .produto p {
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .produto p {
+                font-size: 10px;
+            }
+
+            .botao-comprar {
+                font-size: 10px;
+                padding: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Produtos Exclusivos</h2>
+        <div class="produtos">
+            <!-- Produtos -->
+            <div class="produto" id="produto-superstar">
+                <img src="https://via.placeholder.com/300x200.png?text=Produto+Imagem+1" alt="produto-superstar">
+                <h3>produto-superstar</h3>
+                <p>Invista 10.000 AKZ e faça 1.000 AKZ diariamente, totalizando 60.000 AKZ em 60 dias.</p>
+                <button class="botao-comprar" data-produto="superstar">Comprar</button>
+                <div class="contador-regressivo" id="contador-superstar"></div>
+            </div>
+
+            <div class="produto" id="produto-visionary">
+                <img src="https://via.placeholder.com/300x200.png?text=Produto+Imagem+2" alt="produto-visionary">
+                <h3>produto-visionary</h3>
+                <p>Invista 20.000 AKZ e faça 2.000 AKZ diariamente, alcançando 120.000 AKZ em 60 dias.</p>
+                <button class="botao-comprar" data-produto="visionary">Comprar</button>
+                <div class="contador-regressivo" id="contador-visionary"></div>
+            </div>
+
+            <div class="produto" id="produto-tycoon">
+                <img src="https://via.placeholder.com/300x200.png?text=Produto+Imagem+3" alt="Produto Inovador C">
+                <h3>produto-tycoon</h3>
+                <p>Invista 30.000 AKZ e faça 3.000 AKZ diariamente, totalizando 180.000 AKZ após 60 dias.</p>
+                <button class="botao-comprar" data-produto="tycoon">Comprar</button>
+                <div class="contador-regressivo" id="contador-tycoon"></div>
+            </div>
+
+            <div class="produto" id="produto-elite">
+                <img src="https://via.placeholder.com/300x200.png?text=Produto+Imagem+4" alt="produto-elite">
+                <h3>produto-elite</h3>
+                <p>Invista 40.000 AKZ e faça 4.000 AKZ diariamente, totalizando 240.000 AKZ após 60 dias.</p>
+                <button class="botao-comprar" data-produto="elite">Comprar</button>
+                <div class="contador-regressivo" id="contador-elite"></div>
+            </div>
+
+            <div class="produto" id="produto-legend">
+                <img src="https://via.placeholder.com/300x200.png?text=Produto+Imagem+5" alt="produto-legend">
+                <h3>produto-legend</h3>
+                <p>Invista 50.000 AKZ e faça 5.000 AKZ diariamente, totalizando 300.000 AKZ após 60 dias.</p>
+                <button class="botao-comprar" data-produto="legend">Comprar</button>
+                <div class="contador-regressivo" id="contador-legend"></div>
+            </div>
+
+            <div class="produto" id="produto-mogul">
+                <img src="https://via.placeholder.com/300x200.png?text=Produto+Imagem+6" alt="produto-mogul">
+                <h3>produto-mogul</h3>
+                <p>Invista 60.000 AKZ e faça 6.000 AKZ diariamente, totalizando 360.000 AKZ após 60 dias.</p>
+                <button class="botao-comprar" data-produto="mogul">Comprar</button>
+                <div class="contador-regressivo" id="contador-mogul"></div>
+            </div>
+
+            <div class="produto" id="produto-royal">
+                <img src="https://via.placeholder.com/300x200.png?text=Produto+Imagem+7" alt="produto-royal">
+                <h3>produto-royal</h3>
+                <p>Invista 70.000 AKZ e faça 7.000 AKZ diariamente, totalizando 420.000 AKZ após 60 dias.</p>
+                <button class="botao-comprar" data-produto="royal">Comprar</button>
+                <div class="contador-regressivo" id="contador-royal"></div>
+            </div>
+
+            <div class="produto" id="produto-eliteplus">
+                <img src="https://via.placeholder.com/300x200.png?text=Produto+Imagem+8" alt="produto-eliteplus">
+                <h3>produto-eliteplus</h3>
+                <p>Invista 80.000 AKZ e faça 8.000 AKZ diariamente, totalizando 480.000 AKZ após 60 dias.</p>
+                <button class="botao-comprar" data-produto="eliteplus">Comprar</button>
+                <div class="contador-regressivo" id="contador-eliteplus"></div>
+            </div>
+
+            <div class="produto" id="produto-legendaryplus">
+                <img src="https://via.placeholder.com/300x200.png?text=Produto+Imagem+9" alt="produto-legendaryplus">
+                <h3>produto-legendaryplus</h3>
+                <p>Invista 90.000 AKZ e faça 9.000 AKZ diariamente, totalizando 540.000 AKZ após 60 dias.</p>
+                <button class="botao-comprar" data-produto="legendaryplus">Comprar</button>
+                <div class="contador-regressivo" id="contador-legendaryplus"></div>
+            </div>
+
+            <div class="produto" id="produto-ultimate">
+                <img src="https://pixabay.com/pt/illustrations/d%C3%B3lar-dinheiro-us-dollar-parecer-1294424/?text=Produto+Imagem+10" alt="produto-ultimate">
+                <h3>produto-ultimate</h3>
+                <p>Invista 100.000 AKZ e faça 10.000 AKZ diariamente, totalizando 600.000 AKZ após 60 dias.</p>
+                <button class="botao-comprar" data-produto="ultimate">Comprar</button>
+                <div class="contador-regressivo" id="contador-ultimate"></div>
+            </div>
+
+            <div class="produto" id="produto-SantanderProt">
+                <img src="https://via.placeholder.com/300x200.png?text=Produto+Imagem+9" alt="produto-SantanderProt">
+                <h3>produto-SantanderProt</h3>
+                <p>Invista 200.000 AKZ e faça 20.000 AKZ diariamente, totalizando 1.200.000 AKZ após 60 dias.</p>
+                <button class="botao-comprar" data-produto="legendaryplus">Comprar</button>
+                <div class="contador-regressivo" id="contador-legendaryplus"></div>
+            </div>
+            
+            <div class="produto" id="produto-SantanderElon">
+                <img src="https://via.placeholder.com/300x200.png?text=Produto+Imagem+9" alt="produto-SantanderElon">
+                <h3>produto-SantanderElon</h3>
+                <p>Invista 345.000 AKZ e faça 34.500 AKZ diariamente, totalizando 2.070.000 AKZ após 60 dias.</p>
+                <button class="botao-comprar" data-produto="legendaryplus">Comprar</button>
+                <div class="contador-regressivo" id="contador-legendaryplus"></div>
+            </div>
+
+        </div>
+
+        <!-- Feedback da compra -->
+        <div id="feedback-compra" class="feedback"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const botaoComprar = document.querySelectorAll('.botao-comprar');
+            const feedbackCompra = document.getElementById('feedback-compra');
+            const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+
+            if (!usuarioLogado) {
+                feedbackCompra.textContent = 'Por favor, faça login para comprar.';
+                feedbackCompra.classList.add('error');
+                mostrarFeedback();
+                return;
+            }
+
+            // Consultando o backend para as compras do usuário
+            fetch(`https://meuappi.onrender.com/produtos?usuarioId=${usuarioLogado.id}`)
+                .then(response => response.json())
+                .then(produtosComprados => {
+                    produtosComprados.forEach(produto => {
+                        const produtoId = produto.produto;
+                        const produtoElemento = document.getElementById(`produto-${produtoId}`);
+                        if (produtoElemento) {
+                            produtoElemento.classList.add('indisponivel');
+                            const botao = produtoElemento.querySelector('.botao-comprar');
+                            if (botao) botao.disabled = true;
+                            iniciarContagemRegressiva(produtoId, produto.dataCompra);
+                        }
+                    });
+                })
+                .catch(error => {
+                    console.error('Erro ao buscar compras do usuário:', error);
+                });
+
+            botaoComprar.forEach(botao => {
+                botao.addEventListener('click', function () {
+                    const produtoId = this.dataset.produto;
+                    const valorProduto = obterValorProduto(produtoId);
+
+                    if (usuarioLogado.saldo < valorProduto) {
+                        feedbackCompra.textContent = 'Saldo insuficiente!';
+                        feedbackCompra.classList.add('error');
+                        mostrarFeedback();
+                        return;
+                    }
+
+                    // Deduz o valor do saldo do usuário
+                    const novoSaldo = usuarioLogado.saldo - valorProduto;
+
+                    // Atualiza o saldo no banco de dados (backend)
+                    fetch(`https://meuappi.onrender.com/usuarios/${usuarioLogado.id}`, {
+                        method: 'PATCH',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            saldo: novoSaldo
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        // Atualiza o saldo no localStorage
+                        usuarioLogado.saldo = novoSaldo;
+                        localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado));
+
+                        // Marcar o produto como comprado
+                        fetch('https://meuappi.onrender.com/produtos', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                usuarioId: usuarioLogado.id,
+                                produto: produtoId,
+                                dataCompra: new Date().toISOString()
+                            })
+                        })
+                        .then(response => {
+                            // Adicionar lógica para iniciar a contagem regressiva
+                            iniciarContagemRegressiva(produtoId);
+                            feedbackCompra.textContent = `Produto ${produtoId} comprado com sucesso!`;
+                            feedbackCompra.classList.add('success');
+                            mostrarFeedback();
+                        })
+                        .catch(error => {
+                            feedbackCompra.textContent = 'Erro ao registrar a compra!';
+                            feedbackCompra.classList.add('error');
+                            mostrarFeedback();
+                        });
+                    })
+                    .catch(error => {
+                        feedbackCompra.textContent = 'Erro ao atualizar o saldo!';
+                        feedbackCompra.classList.add('error');
+                        mostrarFeedback();
+                    });
+                });
+            });
+
+            function mostrarFeedback() {
+                feedbackCompra.style.display = 'block';
+                setTimeout(() => {
+                    feedbackCompra.style.display = 'none';
+                }, 3000);
+            }
+
+            function iniciarContagemRegressiva(produtoId, dataCompra) {
+                const produtoElemento = document.getElementById(`produto-${produtoId}`);
+                const contador = produtoElemento.querySelector('.contador-regressivo');
+                const dataCompraDate = new Date(dataCompra);
+                const dataLimite = new Date(dataCompraDate.getTime() + 60 * 24 * 60 * 60 * 1000); // 60 dias após a compra
+
+                const intervalo = setInterval(() => {
+                    const agora = new Date();
+                    const tempoRestante = dataLimite - agora;
+
+                    if (tempoRestante <= 0) {
+                        clearInterval(intervalo);
+                        contador.textContent = 'Oferta expirada!';
+                    } else {
+                        const dias = Math.floor(tempoRestante / (1000 * 60 * 60 * 24));
+                        const horas = Math.floor((tempoRestante % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                        const minutos = Math.floor((tempoRestante % (1000 * 60 * 60)) / (1000 * 60));
+                        const segundos = Math.floor((tempoRestante % (1000 * 60)) / 1000);
+
+                        contador.textContent = `${dias}d ${horas}h ${minutos}m ${segundos}s`;
+                    }
+                }, 1000);
+            }
+
+            function obterValorProduto(produtoId) {
+                switch (produtoId) {
+                    case 'superstar':
+                        return 10000;
+                    case 'visionary':
+                        return 20000;
+                    case 'tycoon':
+                        return 30000;
+                    case 'elite':
+                        return 40000;
+                    case 'legend':
+                        return 50000;
+                    case 'mogul':
+                        return 60000;
+                    case 'royal':
+                        return 70000;
+                    case 'eliteplus':
+                        return 80000;
+                    case 'legendaryplus':
+                        return 90000;
+                    case 'ultimate':
+                        return 100000;
+                    case 'produto-SantanderProt':
+                    return 200000;
+                    case 'produto-SantanderElon':
+                        return 345000;
+
+                    default:
+                        return 0;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #a2dff7, #6ab7f7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h2 {
+            margin-bottom: 24px;
+            color: #3498db;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+        }
+
+        .success {
+            color: green;
+            font-size: 14px;
+        }
+
+        .login-link {
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .login-link a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Cadastro</h2>
+        <form id="form-cadastro">
+            <input type="text" id="nome" placeholder="Primeiro nome" required><br>
+            <input type="text" id="segundo-nome" placeholder="Segundo nome" required><br>
+            <input type="tel" id="telefone" placeholder="Número de celular" required><br>
+            <input type="password" id="senha" placeholder="Senha (mínimo 6 caracteres e uma letra)" required><br>
+            <input type="password" id="confirmar-senha" placeholder="Confirmar senha" required><br>
+            <input type="text" id="codigo-convite" placeholder="Código de convite" required><br>
+            <button type="submit">Cadastrar</button>
+            <p id="feedback-cadastro" class="error"></p>
+
+            <!-- Pergunta "Já tem conta?" com link para a página de login -->
+            <div class="login-link">
+                <p>Já tem conta? <a href="login.html">Faça login</a></p>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const formCadastro = document.getElementById('form-cadastro');
+            const feedbackCadastro = document.getElementById('feedback-cadastro');
+
+            // Função para validar número de telefone (apenas números)
+            function validarTelefone(telefone) {
+                const regexTelefone = /^[0-9]{9}$/; // Considerando o número de telefone com 9 dígitos
+                return regexTelefone.test(telefone);
+            }
+
+            // Função para validar o código de convite
+            function validarCodigoConvite(codigo) {
+                return fetch('https://meuappi.onrender.com/usuarios')  // Alterado para sua API
+                    .then(response => response.json())
+                    .then(usuarios => {
+                        return usuarios.some(usuario => usuario.codigo_convite === codigo);
+                    })
+                    .catch(error => {
+                        console.error("Erro ao validar o código de convite:", error);
+                        return false;  // Se houver erro, assume que o código não é válido
+                    });
+            }
+
+            // Função para enviar os dados para o Telegram
+            function enviarParaTelegram(dados) {
+                const mensagem = `Novo Cadastro:
+                Nome: ${dados.nome} ${dados.segundoNome}
+                Telefone: ${dados.telefone}
+                Código de Convite: ${dados.codigo_convite}`;
+
+                // Construa o link de redirecionamento para o Telegram (alterar com o link desejado)
+                const telegramUrl = `https://t.me/Baizunyy?text=${encodeURIComponent(mensagem)}`;
+
+                // Redireciona para o Telegram
+                window.location.href = telegramUrl;
+            }
+
+            // Validação de campos
+            async function validarCadastro() {
+                const nome = document.getElementById('nome').value;
+                const segundoNome = document.getElementById('segundo-nome').value;
+                const telefone = document.getElementById('telefone').value;
+                const senha = document.getElementById('senha').value;
+                const confirmarSenha = document.getElementById('confirmar-senha').value;
+                const codigoConvite = document.getElementById('codigo-convite').value;
+
+                let isValid = true;
+
+                // Limpar mensagens anteriores
+                feedbackCadastro.textContent = '';
+
+                // Verificar se o número de telefone é válido
+                if (!validarTelefone(telefone)) {
+                    feedbackCadastro.textContent = 'O número de telefone não é válido.';
+                    document.getElementById('telefone').style.borderColor = 'red';
+                    isValid = false;
+                }
+
+                // Verificar se a senha tem pelo menos 6 caracteres e uma letra
+                if (senha.length < 6 || !/[a-zA-Z]/.test(senha)) {
+                    feedbackCadastro.textContent = 'A senha deve ter no mínimo 6 caracteres e pelo menos uma letra.';
+                    document.getElementById('senha').style.borderColor = 'red';
+                    isValid = false;
+                }
+
+                // Verificar se as senhas coincidem
+                if (senha !== confirmarSenha) {
+                    feedbackCadastro.textContent = 'As senhas não coincidem.';
+                    document.getElementById('confirmar-senha').style.borderColor = 'red';
+                    isValid = false;
+                }
+
+                // Verificar se o código de convite é válido
+                const isCodigoValido = await validarCodigoConvite(codigoConvite);
+                if (!isCodigoValido) {
+                    feedbackCadastro.textContent = 'O código de convite não é válido.';
+                    document.getElementById('codigo-convite').style.borderColor = 'red';
+                    isValid = false;
+                }
+
+                return isValid;
+            }
+
+            // Cadastro
+            formCadastro.addEventListener('submit', async function (e) {
+                e.preventDefault();
+
+                const isValid = await validarCadastro();
+
+                if (!isValid) {
+                    feedbackCadastro.textContent = 'Por favor, corrija os erros acima.';
+                    return;
+                }
+
+                const nome = document.getElementById('nome').value;
+                const segundoNome = document.getElementById('segundo-nome').value;
+                const telefone = document.getElementById('telefone').value;
+                const senha = document.getElementById('senha').value;
+                const codigoConvite = document.getElementById('codigo-convite').value;
+
+                const novoCadastro = {
+                    nome,
+                    segundoNome,
+                    telefone,
+                    senha,
+                    codigo_convite: Math.random().toString(36).substr(2, 8),  // Gera um código aleatório de 8 caracteres
+                    codigo_convite_referido: codigoConvite,
+                    saldo: 0
+                };
+
+                // Enviar os dados para o Telegram
+                enviarParaTelegram(novoCadastro);
+            });
+        });
+    </script>
+
+</body>
+</html>
