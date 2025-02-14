@@ -101,59 +101,292 @@
     </style>
 </head>
 <body>
-    <div class="container" id="login">
-        <h2>Login</h2>
-        <form id="form-login">
-            <input type="text" id="telefone-login" placeholder="username" required>
-            <input type="password" id="senha-login" placeholder="Senha" required>
-            <button type="submit">Entrar</button>
-            <p id="feedback-login" class="error"></p>
-        </form>
-        <div class="toggle-form">
-            <p>Não tem uma conta? <a href="#" id="ir-cadastro">Cadastre-se</a></p>
+    <div class="container">
+        <!-- Nome da Plataforma -->
+        <div class="platform-name">Vercel</div>
+
+        <!-- Tela de Login -->
+        <div id="login" class="form-container">
+            <h2>Login</h2>
+            <form id="form-login">
+                <input type="text" id="telefone-login" name="telefone-login" placeholder="Número de Telefone ou E-mail" required>
+                <input type="password" id="senha-login" name="senha-login" placeholder="Senha" required>
+                <button type="submit">Entrar</button>
+            </form>
+            <div id="feedback-login" class="feedback"></div>
+            <div class="toggle-form">
+                <p>Não tem uma conta? <a href="#" id="ir-cadastro">Cadastre-se</a></p>
+            </div>
+            
+            <!-- Logotipo do Telegram para suporte -->
+            <div class="telegram-logo-container">
+                <p>Com dúvidas? Clique no logo do Telegram abaixo para entrar no nosso canal:</p>
+                <a href="https://t.me/Baizunyy" target="_blank">
+                    <img src="https://bot.quantvision.live/app/img/bot.png" alt="Logo do Telegram">
+                </a>
+            </div>
+        </div>
+
+        <!-- Tela de Cadastro -->
+        <div id="cadastro" class="form-container" style="display: none;">
+            <h2>Cadastro</h2>
+            <form id="form-cadastro">
+                <input type="text" id="nome" name="nome" placeholder="Nome Completo" required>
+
+                <!-- Número de telefone ou e-mail -->
+                <input type="text" id="telefone" name="telefone" placeholder="Número de Telefone ou E-mail" required>
+                <div id="feedback-telefone" class="error"></div>
+
+                <input type="password" id="senha" name="senha" placeholder="Senha (mínimo 6 caracteres)" required>
+                <div id="feedback-senha" class="error"></div>
+
+                <input type="password" id="confirmar-senha" name="confirmar-senha" placeholder="Confirmar Senha" required>
+                <div id="feedback-confirmar-senha" class="error"></div>
+
+                <input type="text" id="codigo-convite" name="codigo-convite" placeholder="Código de Convite (Obrigatório)" required>
+                <div id="feedback-codigo-convite" class="error"></div>
+
+                <button type="submit">Cadastrar</button>
+            </form>
+            <div id="feedback-cadastro" class="feedback"></div>
+            <div class="toggle-form">
+                <p>Já tem uma conta? <a href="#" id="ir-login">Faça Login</a></p>
+            </div>
         </div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+            const formCadastro = document.getElementById('form-cadastro');
             const formLogin = document.getElementById('form-login');
+            const feedbackCadastro = document.getElementById('feedback-cadastro');
             const feedbackLogin = document.getElementById('feedback-login');
+            const irLogin = document.getElementById('ir-login');
             const irCadastro = document.getElementById('ir-cadastro');
-    
+            const cadastroContainer = document.getElementById('cadastro');
+            const loginContainer = document.getElementById('login');
+
+            const feedbackTelefone = document.getElementById('feedback-telefone');
+            const feedbackSenha = document.getElementById('feedback-senha');
+            const feedbackConfirmarSenha = document.getElementById('feedback-confirmar-senha');
+            const feedbackCodigoConvite = document.getElementById('feedback-codigo-convite');
+
+            // Alternar para a tela de cadastro
             irCadastro.addEventListener('click', function (e) {
                 e.preventDefault();
-                // Redirecionar para a página de cadastro
-                window.location.href = 'cadastro.html';  // Página de cadastro
+                loginContainer.style.display = 'none';
+                cadastroContainer.style.display = 'block';
             });
-    
-            formLogin.addEventListener('submit', function (e) {
+
+            // Alternar para a tela de login
+            irLogin.addEventListener('click', function (e) {
                 e.preventDefault();
-    
-                const telefoneLogin = document.getElementById('telefone-login').value;
-                const senhaLogin = document.getElementById('senha-login').value;
-    
-                fetch('https://meuappi.onrender.com/usuarios')
-                .then(res => res.json())
+                cadastroContainer.style.display = 'none';
+                loginContainer.style.display = 'block';
+            });
+
+            // Função para validar e-mail
+            function validarEmail(email) {
+                const regexEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                return regexEmail.test(email);
+            }
+
+            // Função para validar número de telefone (apenas números)
+            function validarTelefone(telefone) {
+                const regexTelefone = /^[0-9]{9}$/; // Considerando o número de telefone com 9 dígitos
+                return regexTelefone.test(telefone);
+            }
+
+            // Função para validar telefone único
+            function validarTelefoneUnico(telefone) {
+                return fetch('https://meuappi.onrender.com/usuarios')  // Alterado para sua API
+                    .then(response => response.json())
+                    .then(usuarios => {
+                        return !usuarios.some(usuario => usuario.telefone === telefone);
+                    })
+                    .catch(error => {
+                        console.error("Erro ao validar o telefone:", error);
+                        return false;  // Se houver erro, assume que o telefone pode ser único
+                    });
+            }
+
+            // Função para validar o código de convite
+            function validarCodigoConvite(codigo) {
+                return fetch('https://meuappi.onrender.com/usuarios')  // Alterado para sua API
+                    .then(response => response.json())
+                    .then(usuarios => {
+                        return usuarios.some(usuario => usuario.codigo_convite === codigo);
+                    })
+                    .catch(error => {
+                        console.error("Erro ao validar o código de convite:", error);
+                        return false;  // Se houver erro, assume que o código não é válido
+                    });
+            }
+
+            // Validação de campos
+            async function validarCadastro() {
+                const nome = document.getElementById('nome').value;
+                const telefone = document.getElementById('telefone').value;
+                const senha = document.getElementById('senha').value;
+                const confirmarSenha = document.getElementById('confirmar-senha').value;
+                const codigoConvite = document.getElementById('codigo-convite').value;
+
+                let isValid = true;
+
+                // Limpar mensagens anteriores
+                feedbackTelefone.textContent = '';
+                feedbackSenha.textContent = '';
+                feedbackConfirmarSenha.textContent = '';
+                feedbackCodigoConvite.textContent = '';
+
+                // Verificar se o número de telefone ou e-mail é válido
+                if (validarEmail(telefone)) {
+                    // E-mail válido, continue
+                } else if (!validarTelefone(telefone)) {
+                    feedbackTelefone.textContent = 'O número de telefone ou e-mail fornecido não é válido.';
+                    document.getElementById('telefone').style.borderColor = 'red';
+                    isValid = false;
+                }
+
+                // Verificar telefone único ou e-mail único
+                const isTelefoneUnico = await validarTelefoneUnico(telefone);
+                if (!isTelefoneUnico) {
+                    feedbackTelefone.textContent = 'Número de telefone ou e-mail já cadastrado.';
+                    document.getElementById('telefone').style.borderColor = 'red';
+                    isValid = false;
+                }
+
+                // Verificar se a senha tem pelo menos 6 caracteres
+                if (senha.length < 6) {
+                    feedbackSenha.textContent = 'A senha deve ter no mínimo 6 caracteres.';
+                    document.getElementById('senha').style.borderColor = 'red';
+                    isValid = false;
+                }
+
+                // Verificar se as senhas coincidem
+                if (senha !== confirmarSenha) {
+                    feedbackConfirmarSenha.textContent = 'As senhas não coincidem.';
+                    document.getElementById('confirmar-senha').style.borderColor = 'red';
+                    isValid = false;
+                }
+
+                // Verificar se o código de convite é válido
+                const isCodigoValido = await validarCodigoConvite(codigoConvite);
+                if (!isCodigoValido) {
+                    feedbackCodigoConvite.textContent = 'O código de convite não é válido.';
+                    document.getElementById('codigo-convite').style.borderColor = 'red';
+                    isValid = false;
+                }
+
+                return isValid;
+            }
+
+            // Cadastro
+            formCadastro.addEventListener('submit', async function (e) {
+                e.preventDefault();
+
+                const isValid = await validarCadastro();
+
+                if (!isValid) {
+                    feedbackCadastro.textContent = 'Por favor, corrija os erros acima.';
+                    feedbackCadastro.className = 'error';
+                    return;
+                }
+
+                const nome = document.getElementById('nome').value;
+                const telefone = document.getElementById('telefone').value;
+                const senha = document.getElementById('senha').value;
+                const codigoConvite = document.getElementById('codigo-convite').value;
+
+                const novoUsuario = {
+                    nome,
+                    telefone,
+                    senha,
+                    codigo_convite: Math.random().toString(36).substr(2, 8),  // Gera um código aleatório de 8 caracteres
+                    codigo_convite_referido: codigoConvite,
+                    saldo: 0
+                };
+
+                // Enviar dados para o backend
+                fetch('https://meuappi.onrender.com/usuarios', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(novoUsuario)
+                })
+                .then(response => response.json())
                 .then(data => {
-                    const usuario = data.find(u => (u.telefone === telefoneLogin || u.email === telefoneLogin) && u.senha === senhaLogin);
-                    if (usuario) {
-                        feedbackLogin.textContent = 'Login bem-sucedido!';
-                        feedbackLogin.className = 'success';
-                        localStorage.setItem('usuarioLogado', JSON.stringify(usuario));
-                        setTimeout(() => {
-                            window.location.href = 'dashboard.html';
-                        }, 1500);
-                    } else {
-                        feedbackLogin.textContent = 'usernome incorreto.';
-                        feedbackLogin.className = 'error';
-                    }
+                    feedbackCadastro.textContent = 'Cadastro realizado com sucesso!';
+                    feedbackCadastro.className = 'success';
+                    setTimeout(() => {
+                        cadastroContainer.style.display = 'none';
+                        loginContainer.style.display = 'block';
+                    }, 2000);
                 })
                 .catch(error => {
-                    feedbackLogin.textContent = 'Erro ao fazer login.';
-                    feedbackLogin.className = 'error';
-                    console.error("Erro no login:", error);
+                    feedbackCadastro.textContent = 'Erro ao realizar cadastro.';
+                    feedbackCadastro.className = 'error';
+                    console.error("Erro no cadastro:", error);
                 });
+            });
+
+            // Login
+            formLogin.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const telefoneLogin = document.getElementById('telefone-login').value;
+                const senhaLogin = document.getElementById('senha-login').value;
+
+                // Verificar se é e-mail ou telefone
+                if (validarEmail(telefoneLogin)) {
+                    // Se for e-mail
+                    fetch('https://meuappi.onrender.com/usuarios')
+                    .then(res => res.json())
+                    .then(data => {
+                        const usuario = data.find(u => u.email === telefoneLogin && u.senha === senhaLogin);
+                        if (usuario) {
+                            feedbackLogin.textContent = 'Login bem-sucedido!';
+                            feedbackLogin.className = 'success';
+                            localStorage.setItem('usuarioLogado', JSON.stringify(usuario));
+                            window.location.href = 'dashboard.html';
+                        } else {
+                            feedbackLogin.textContent = 'E-mail ou senha incorretos.';
+                            feedbackLogin.className = 'error';
+                        }
+                    })
+                    .catch(error => {
+                        feedbackLogin.textContent = 'Erro ao fazer login.';
+                        feedbackLogin.className = 'error';
+                        console.error("Erro no login:", error);
+                    });
+                } else if (validarTelefone(telefoneLogin)) {
+                    // Se for telefone
+                    fetch('https://meuappi.onrender.com/usuarios')
+                    .then(res => res.json())
+                    .then(data => {
+                        const usuario = data.find(u => u.telefone === telefoneLogin && u.senha === senhaLogin);
+                        if (usuario) {
+                            feedbackLogin.textContent = 'Login bem-sucedido!';
+                            feedbackLogin.className = 'success';
+                            localStorage.setItem('usuarioLogado', JSON.stringify(usuario));
+                            window.location.href = 'dashboard.html';
+                        } else {
+                            feedbackLogin.textContent = 'Telefone ou senha incorretos.';
+                            feedbackLogin.className = 'error';
+                        }
+                    })
+                    .catch(error => {
+                        feedbackLogin.textContent = 'Erro ao fazer login.';
+                        feedbackLogin.className = 'error';
+                        console.error("Erro no login:", error);
+                    });
+                } else {
+                    feedbackLogin.textContent = 'Por favor, insira um número de telefone ou e-mail válido.';
+                    feedbackLogin.className = 'error';
+                }
             });
         });
     </script>
-    
+</body>
+</html>

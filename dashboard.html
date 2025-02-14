@@ -13,7 +13,8 @@
 
         body {
             font-family: 'Roboto', sans-serif;
-            background: linear-gradient(135deg, #a2dff7, #6ab7f7); /* Cor de água */
+            background: url('https://www.aogopa.com/assets/home-noti-CyBBgD-v.png') no-repeat center center fixed;
+            background-size: cover;
             display: flex;
             flex-direction: column;
             height: 100vh;
@@ -23,7 +24,7 @@
 
         /* Cabeçalho */
         .header {
-            background-color: #3498db; /* Azul claro */
+            background-color: rgba(52, 152, 219, 0.8);
             color: white;
             padding: 15px 30px;
             text-align: center;
@@ -61,7 +62,7 @@
         .sidebar {
             width: 0;
             height: 100vh;
-            background-color: #2980b9; /* Azul mais escuro */
+            background-color: #2980b9;
             color: #fff;
             padding-top: 20px;
             position: fixed;
@@ -71,18 +72,18 @@
             flex-direction: column;
             justify-content: flex-start;
             transition: width 0.3s ease;
-            overflow: hidden; /* Não deixa o conteúdo transbordar */
+            overflow: hidden;
             z-index: 5;
         }
 
         .sidebar.open {
-            width: 100%; /* O menu ocupa 100% da tela em dispositivos móveis */
+            width: 100%;
         }
 
         .sidebar .logo {
             padding: 20px;
             text-align: center;
-            background-color: #34495e; /* Azul escuro */
+            background-color: #34495e;
         }
 
         .sidebar .logo span {
@@ -109,7 +110,6 @@
             background-color: #444;
         }
 
-        /* Novo Estilo para os itens do menu em formato de cartões */
         .menu-card {
             background-color: #34495e;
             margin: 10px 20px;
@@ -131,7 +131,6 @@
             margin-top: 10px;
         }
 
-        /* Botão de 3 pontinhos no cabeçalho para abrir/fechar o menu */
         .hamburger {
             width: 30px;
             height: 30px;
@@ -145,7 +144,7 @@
             position: fixed;
             top: 20px;
             left: 20px;
-            z-index: 15; /* Para garantir que o botão do hambúrguer fique sobre o menu lateral */
+            z-index: 15;
             border-radius: 50%;
         }
 
@@ -157,21 +156,20 @@
             margin: 3px 0;
         }
 
-        /* Container principal */
         .main-container {
             width: 100%;
             padding: 30px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            height: calc(100vh - 80px); /* Deixe o conteúdo ocupar o restante da tela */
-            overflow-y: auto; /* Permite rolagem vertical se necessário */
+            height: calc(100vh - 80px);
+            overflow-y: auto;
             margin-top: 80px;
-            transition: margin-left 0.3s ease; /* Para mover o conteúdo conforme o menu é aberto/fechado */
+            transition: margin-left 0.3s ease;
         }
 
         .main-container.sidebar-open {
-            margin-left: 0; /* Não mover conteúdo em telas pequenas */
+            margin-left: 0;
         }
 
         .dashboard-header {
@@ -227,58 +225,50 @@
             margin-top: 10px;
         }
 
-        /* Itens da página principal em formato de grid */
-        .page-cards-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 20px;
-            width: 100%;
-            justify-content: center;
-        }
+/* Cartão contendo os logotipos */
+.logo-card {
+    background-color: #34495e;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    text-align: center;
+    color: white;
+}
 
-        .page-card {
-            background-color: #3498db; /* Azul */
-            color: white;
-            padding: 40px;
-            margin: 15px;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
+/* Container dos logotipos dentro do cartão */
+.logo-container {
+    display: flex; /* Exibe os logotipos em uma linha */
+    flex-wrap: wrap; /* Permite que os logotipos quebrem para a linha seguinte quando não houver espaço */
+    gap: 20px; /* Espaçamento entre os logotipos */
+    padding-bottom: 10px; /* Para evitar que os logotipos fiquem colados na borda do cartão */
+}
 
-        .page-card:hover {
-            transform: scale(1.05);
-        }
+/* Estilo dos logotipos */
+.logo-container img {
+    height: 100px; /* Define uma altura fixa para os logotipos (ajuste conforme necessário) */
+    width: auto; /* Mantém a proporção das imagens */
+    cursor: pointer;
+    max-width: 100%; /* Garante que os logotipos não ultrapassem o tamanho disponível */
+}
 
-        /* Responsividade para telas menores */
-        @media (max-width: 768px) {
-            .sidebar.open {
-                width: 100%; /* O menu ocupa 100% da tela em dispositivos móveis */
-                height: 100vh; /* Garante que o menu ocupe toda a altura da tela */
-                position: fixed; /* O menu sobrepõe o conteúdo */
-                top: 0;
-                left: 0;
-            }
 
-            .hamburger {
-                left: 10px;
-                top: 10px;
-            }
+/* Container dos logotipos dentro do cartão */
+.logo-container {
+    display: flex; /* Exibe os logotipos em uma linha */
+    overflow-x: auto; /* Permite rolagem horizontal caso o conteúdo ultrapasse a largura */
+    gap: 20px; /* Espaçamento entre os logotipos */
+    padding-bottom: 10px; /* Para evitar que os logotipos fiquem colados na borda do cartão */
+}
 
-            .main-container {
-                margin-left: 0; /* O conteúdo principal não se moverá mais */
-            }
+/* Estilo dos logotipos */
+.logo-container img {
+    height: 100px; /* Define uma altura fixa para os logotipos (ajuste conforme necessário) */
+    width: auto; /* Mantém a proporção das imagens */
+    cursor: pointer;
+}
 
-            .main-container.sidebar-open {
-                margin-left: 0; /* Garante que o conteúdo principal não seja movido */
-            }
 
-            /* Ajustar a grid para telas pequenas */
-            .page-cards-container {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
+
     </style>
 </head>
 <body>
@@ -293,19 +283,17 @@
         </div>
     </div>
 
-    <!-- Menu Lateral (apenas com saldo e informações do usuário) -->
+    <!-- Menu Lateral -->
     <div class="sidebar" id="sidebar">
         <div class="logo">
             <span>S</span> <!-- Letra "S" no lugar do logotipo do Bitcoin -->
         </div>
-
         <h2>Informações do Usuário</h2>
 
-        <!-- Cartões de Saldo e Informações do Usuário dentro do Menu Lateral -->
         <div class="balance-card">
             <h3>Seu Saldo</h3>
             <div class="balance" id="saldo">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3d/Wallet_icon.png" alt="Carteira" width="30">
+                <img src="https://www.aogopa.com/assets/w-bnr-B3xblq2m.png" alt="Carteira" width="30">
                 AKZ 0.00
                 <span id="saldo-info"></span>
             </div>
@@ -330,37 +318,37 @@
             <h2>Bem-vindo ao Santander!</h2>
         </div>
 
-        <!-- Cartões de página em azul em formato de grid -->
-        <div class="page-cards-container">
-            <div class="page-card" id="bmd">
-                <span>🎶Pages</span>
-            </div>
-            <div class="page-card" id="informacoes">
-                <span>⬜Relatórios</span>
-            </div>
-            <div class="page-card" id="servicos">
-                <span>✔Atendimento</span>
-            </div>
-            <div class="page-card" id="produtos">
-                <span>🎁Produtos</span>
-            </div>
-            <div class="page-card" id="registros">
-                <span>🍞Registros</span>
-            </div>
-            <div class="page-card" id="equipe">
-                <span>👨‍👩‍👧‍👦Time</span>
-            </div>
-            <div class="page-card" id="my">
-                <span>✍Compras historico</span>
-            </div>
-            <div class="page-card" id="tabela">
-                <span>🙌</span>
-            </div>
-            <div class="page-card" id="termos">
-                <span>🧇Termos de Uso</span>
-            </div>
+    <!-- Cartão contendo os logotipos -->
+<!-- Cartão contendo os logotipos -->
+<div class="logo-card">
+    <div class="logo-container">
+        <a href="relatorio.html"><img src="https://www.aogopa.com/assets/user7-D4q2IEUD.svg" alt="Logotipo Relatório"></a>
+        <a href="relatorio.html"><img src="https://www.aogopa.com/assets/app-DlWUT4FG.svg" alt="Logotipo Relatório"></a>
+        <a href="relatorio.html"><img src="https://www.aogopa.com/assets/contact-ywXZcYW-.svg" alt="Logotipo Relatório"></a>
+        <a href="relatorio.html"><img src="https://www.aogopa.com/assets/help-BofGhCTm.svg" alt="Logotipo Relatório"></a>
+        <a href="relatorio.html"><img src="https://www.aogopa.com/assets/help-BofGhCTm.svg" alt="Logotipo Relatório"></a>
+        <a href="relatorio.html"><img src="https://www.aogopa.com/assets/secu1-DK3dpOi7.svg" alt="Logotipo Relatório"></a>
+        <a href="relatorio.html"><img src="https://www.aogopa.com/assets/secu2-BjwD550C.svg" alt="Logotipo Relatório"></a>
+    </div>
+</div>
+
         </div>
     </div>
+
+    <script>
+        // Script para controle do menu hambúrguer
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const sidebar = document.getElementById('sidebar');
+        const mainContainer = document.querySelector('.main-container');
+
+        hamburgerBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
+            mainContainer.classList.toggle('sidebar-open');
+        });
+    </script>
+</body>
+</html>
+
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -385,7 +373,7 @@
             // Logar e Redirecionar para outras páginas
             logoutBtn.addEventListener('click', function () {
                 localStorage.removeItem('usuarioLogado');
-                window.location.href = 'login.html';
+                window.location.href = 'index.html';
             });
 
             // Redirecionar os botões Recarregar e Sacar
