@@ -225,49 +225,62 @@
             margin-top: 10px;
         }
 
-/* Cartão contendo os logotipos */
-.logo-card {
-    background-color: #34495e;
-    padding: 20px;
-    border-radius: 10px;
-    margin-top: 20px;
-    text-align: center;
-    color: white;
-}
+        /* Cartão contendo os logotipos */
+        .logo-card {
+            background-color: #34495e;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            text-align: center;
+            color: white;
+        }
 
-/* Container dos logotipos dentro do cartão */
-.logo-container {
-    display: flex; /* Exibe os logotipos em uma linha */
-    flex-wrap: wrap; /* Permite que os logotipos quebrem para a linha seguinte quando não houver espaço */
-    gap: 20px; /* Espaçamento entre os logotipos */
-    padding-bottom: 10px; /* Para evitar que os logotipos fiquem colados na borda do cartão */
-}
+        /* Container dos logotipos dentro do cartão */
+        .logo-container {
+            display: flex; 
+            flex-wrap: wrap;
+            gap: 20px; 
+            justify-content: center; /* Alinha os logotipos no centro */
+            padding-bottom: 10px;
+        }
 
-/* Estilo dos logotipos */
-.logo-container img {
-    height: 100px; /* Define uma altura fixa para os logotipos (ajuste conforme necessário) */
-    width: auto; /* Mantém a proporção das imagens */
-    cursor: pointer;
-    max-width: 100%; /* Garante que os logotipos não ultrapassem o tamanho disponível */
-}
+        /* Estilo dos logotipos */
+        .logo-container img {
+            height: 80px; /* Ajuste do tamanho dos logotipos */
+            width: auto;
+            cursor: pointer;
+            max-width: 100%;
+        }
 
+        /* Media Queries para Responsividade */
+        @media (max-width: 768px) {
+            .logo-container img {
+                height: 60px; /* Reduz o tamanho dos logotipos em telas menores */
+            }
 
-/* Container dos logotipos dentro do cartão */
-.logo-container {
-    display: flex; /* Exibe os logotipos em uma linha */
-    overflow-x: auto; /* Permite rolagem horizontal caso o conteúdo ultrapasse a largura */
-    gap: 20px; /* Espaçamento entre os logotipos */
-    padding-bottom: 10px; /* Para evitar que os logotipos fiquem colados na borda do cartão */
-}
+            .header {
+                padding: 10px;
+                font-size: 20px;
+            }
 
-/* Estilo dos logotipos */
-.logo-container img {
-    height: 100px; /* Define uma altura fixa para os logotipos (ajuste conforme necessário) */
-    width: auto; /* Mantém a proporção das imagens */
-    cursor: pointer;
-}
+            .menu-card {
+                margin: 10px;
+                padding: 15px;
+            }
 
-
+            .user-info-card, .balance-card {
+                margin: 10px;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-title">Painel do Usuário</div>
+        <button class="logout">Logout</button>
+    </div>
+        </div>
 
     </style>
 </head>
