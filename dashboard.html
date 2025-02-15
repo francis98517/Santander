@@ -21,6 +21,58 @@
             color: #333;
             overflow: hidden;
         }
+        /* Estilos gerais para o carrossel */
+.carousel-card {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.carousel-images {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.carousel-images img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+/* Botões de navegação */
+.carousel-navigation {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+}
+
+.carousel-navigation button {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 50%;
+    opacity: 0.5;
+}
+
+.carousel-navigation button:hover {
+    opacity: 1;
+}
+
+/* Controle de visibilidade do botão */
+.carousel-navigation button:disabled {
+    opacity: 0.2;
+}
+
 
         /* Cabeçalho */
         .header {
@@ -110,66 +162,40 @@
             background-color: #444;
         }
 
-        .menu-card {
-            background-color: #34495e;
-            margin: 10px 20px;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-
-        .menu-card:hover {
-            transform: scale(1.05);
-            background-color: #2980b9;
-        }
-
-        .menu-card span {
-            font-size: 24px;
-            color: white;
-            display: block;
-            margin-top: 10px;
-        }
-
-        .hamburger {
-            width: 30px;
-            height: 30px;
-            background-color: #333;
-            color: white;
-            font-size: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
+        /* Menu Inferior para Logotipos */
+        .bottom-menu {
             position: fixed;
-            top: 20px;
-            left: 20px;
-            z-index: 15;
-            border-radius: 50%;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(52, 152, 219, 0.8);
+            display: flex;
+            justify-content: space-around;
+            padding: 10px;
+            z-index: 10;
         }
 
-        .hamburger span {
-            display: block;
-            width: 20px;
-            height: 4px;
-            background-color: white;
-            margin: 3px 0;
+        .bottom-menu a {
+            color: white;
+            font-size: 16px;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .bottom-menu a:hover {
+            background-color: #2980b9;
+            border-radius: 5px;
+            padding: 5px;
         }
 
         .main-container {
-            width: 100%;
             padding: 30px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            height: calc(100vh - 80px);
-            overflow-y: auto;
+            height: calc(100vh - 120px); /* Ajuste para não cobrir o menu inferior */
             margin-top: 80px;
             transition: margin-left 0.3s ease;
-        }
-
-        .main-container.sidebar-open {
-            margin-left: 0;
         }
 
         .dashboard-header {
@@ -190,44 +216,9 @@
             margin-left: 20px;
         }
 
-        /* Estilo para os cartões de saldo e informações de usuário */
-        .user-info-card, .balance-card {
-            background-color: #34495e;
-            padding: 15px;
-            border-radius: 10px;
-            margin: 15px;
-            text-align: center;
-            color: white;
-            transition: transform 0.3s ease;
-        }
-
-        .user-info-card:hover, .balance-card:hover {
-            transform: scale(1.05);
-            background-color: #2980b9;
-        }
-
-        .balance img {
-            vertical-align: middle;
-            margin-right: 10px;
-        }
-
-        .user-info-card p, .balance-card p {
-            margin: 5px 0;
-        }
-
-        .copy-btn {
-            background-color: #3498db;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 14px;
-            margin-top: 10px;
-        }
-
         /* Cartão contendo os logotipos */
         .logo-card {
-            background-color: #34495e;
+            background-image: url('https://fc244.com/static/bg_mine.png'); 
             padding: 20px;
             border-radius: 10px;
             margin-top: 20px;
@@ -240,13 +231,13 @@
             display: flex; 
             flex-wrap: wrap;
             gap: 20px; 
-            justify-content: center; /* Alinha os logotipos no centro */
+            justify-content: center; 
             padding-bottom: 10px;
         }
 
         /* Estilo dos logotipos */
         .logo-container img {
-            height: 80px; /* Ajuste do tamanho dos logotipos */
+            height: 80px;
             width: auto;
             cursor: pointer;
             max-width: 100%;
@@ -255,7 +246,7 @@
         /* Media Queries para Responsividade */
         @media (max-width: 768px) {
             .logo-container img {
-                height: 60px; /* Reduz o tamanho dos logotipos em telas menores */
+                height: 60px;
             }
 
             .header {
@@ -276,14 +267,75 @@
     </style>
 </head>
 <body>
+    
+    <!-- Cabeçalho com o nome "Santander" -->
     <div class="header">
-        <div class="header-title">Painel do Usuário</div>
-        <button class="logout">Logout</button>
+        <button class="logout" id="logout-btn">Sair</button>
+        <div class="header-title">Santander</div>
+        <div class="hamburger" id="hamburger-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     </div>
+
+    <!-- Menu Lateral -->
+    <div class="sidebar" id="sidebar">
+        <div class="logo">
+            <span>S</span> <!-- Letra "S" no lugar do logotipo do Bitcoin -->
+        </div>
+        <h2>Informações do Usuário</h2>
+
+        <div class="balance-card">
+            <h3>Seu Saldo</h3>
+            <div class="balance" id="saldo">
+                <img src="https://www.aogopa.com/assets/w-bnr-B3xblq2m.png" alt="Carteira" width="30">
+                AKZ 0.00
+                <span id="saldo-info"></span>
+            </div>
+            <div>
+                <button class="copy-btn" id="recarregar-btn">Recarregar</button>
+                <button class="copy-btn" id="sacar-btn">Sacar</button>
+            </div>
         </div>
 
-    </style>
-</head>
+    </div>
+
+    <!-- Página Principal -->
+    <div class="main-container">
+        <div class="dashboard-header">
+            <img src="https://bot.quantvision.live/app/img/laptop.gif" alt="Card" width="48">
+            <h2>Olá!</h2>
+        </div>
+
+        <!-- Cartão contendo os logotipos -->
+        <div class="logo-card">
+            <div class="logo-container">
+                <a href="meu.html"><img src="https://www.aogopa.com/assets/user7-D4q2IEUD.svg" alt="Logotipo Relatório"><br>Fundos</a>
+                <a href="termos.html"><img src="https://bot.quantvision.live/app/img/bot4.png" alt="Logotipo Relatório"><br>Sobre</a>
+                <a href="servicos.html"><img src="https://www.aogopa.com/assets/contact-ywXZcYW-.svg" alt="Logotipo Relatório"><br>Atendim...</a>
+                <a href="equipe.html"><img src="https://bot.quantvision.live/app/img/bot3.png" alt="Logotipo Relatório"><br>Equipe</a>
+                <a href="bmd.html"><img src="https://www.aogopa.com/assets/help-BofGhCTm.svg" alt="Logotipo Relatório"><br>Admin</a>
+                <a href="produtos.html"><img src="https://bot.quantvision.live/app/img/bot.png" alt="Logotipo Relatório"><br>Produtos</a>
+                <a href="informacoes.html"><img src="https://united976.com/static/colorIcon/m_list2.png" alt="Logotipo Relatório"><br>Info...</a>
+                <a href="resgate.html"><img src="https://fc244.world/static/userLevel/0.svg" alt="Logotipo Relatório"><br>Bonus</a>
+                <a href="publicacoes.html"><img src="https://www.aogopa.com/assets/secu1-DK3dpOi7.svg" alt="Logotipo Relatório"><br>Publicações</a>
+            </div>
+        </div>
+
+        </div>
+    </div>
+
+    <!-- Menu Inferior para os logotipos -->
+    <div class="bottom-menu">
+        <a href="recarregar.html"><img src="https://bot.quantvision.live/app/img/bot4.png" alt="Logotipo Relatório"><br>Deposito</a>
+        <a href="equipe.html"><img src="https://bot.quantvision.live/app/img/bot3.png" alt="Logotipo Relatório"><br>Equipe</a>
+        <a href="servicos.html"><img src="https://www.aogopa.com/assets/contact-ywXZcYW-.svg" alt="Logotipo Relatório"><br>Serviços</a>
+        <a href="registros.html"><img src="https://www.aogopa.com/assets/wt2-BA93ok9f.svg" alt="Logotipo Relatório"><br>Histórico</a>
+        <a href="sacar.html"><img src="https://www.aogopa.com/assets/wt2-BA93ok9f.svg" alt="Logotipo Relatório"><br>Extrair</a>
+        <a href="produtos.html"><img src="https://bot.quantvision.live/app/img/bot2.png"  alt="Logotipo Relatório"><br>Bot</a>
+    </div>
+
 <body>
     <!-- Cabeçalho com o nome "Santander" -->
     <div class="header">
@@ -324,28 +376,55 @@
             </div>
         </div>
     </div>
+    <div class="carousel-card">
+    <div class="carousel-images">
+        <img src="https://placeimg.com/600/400/people" alt="Imagem 1">
+        <img src="https://placeimg.com/600/400/nature" alt="Imagem 2">
+        <img src="https://placeimg.com/600/400/tech" alt="Imagem 3">
+    </div>
+
+    <!-- Navegação do Carousel -->
+    <div class="carousel-navigation">
+        <button id="prevBtn">&lt;</button>
+        <button id="nextBtn">&gt;</button>
+    </div>
+</div>
+
 
     <!-- Página Principal -->
     <div class="main-container">
         <div class="dashboard-header">
-            <h2>Bem-vindo ao Santander!</h2>
+            <img src="https://bot.quantvision.live/app/img/laptop.gif" alt="Card" width="48">
+            <h2>Olá!</h2>
         </div>
 
-    <!-- Cartão contendo os logotipos -->
-<!-- Cartão contendo os logotipos -->
-<div class="logo-card">
-    <div class="logo-container">
-        <a href="relatorio.html"><img src="https://www.aogopa.com/assets/user7-D4q2IEUD.svg" alt="Logotipo Relatório"></a>
-        <a href="relatorio.html"><img src="https://www.aogopa.com/assets/app-DlWUT4FG.svg" alt="Logotipo Relatório"></a>
-        <a href="relatorio.html"><img src="https://www.aogopa.com/assets/contact-ywXZcYW-.svg" alt="Logotipo Relatório"></a>
-        <a href="relatorio.html"><img src="https://www.aogopa.com/assets/help-BofGhCTm.svg" alt="Logotipo Relatório"></a>
-        <a href="relatorio.html"><img src="https://www.aogopa.com/assets/help-BofGhCTm.svg" alt="Logotipo Relatório"></a>
-        <a href="relatorio.html"><img src="https://www.aogopa.com/assets/secu1-DK3dpOi7.svg" alt="Logotipo Relatório"></a>
-        <a href="relatorio.html"><img src="https://www.aogopa.com/assets/secu2-BjwD550C.svg" alt="Logotipo Relatório"></a>
+        <!-- Cartão contendo os logotipos -->
+        <div class="logo-card">
+            <div class="logo-container">
+                <a href="informacoes.html"><img src="https://www.aogopa.com/assets/user7-D4q2IEUD.svg" alt="Logotipo Relatório"></a>
+                <a href="termos.html"><img src="https://bot.quantvision.live/app/img/bot4.png" alt="Logotipo Relatório"></a>
+                <a href="servicos.html"><img src="https://www.aogopa.com/assets/contact-ywXZcYW-.svg" alt="Logotipo Relatório"></a>
+                <a href="equipe.html"><img src="https://bot.quantvision.live/app/img/bot3.png" alt="Logotipo Relatório"></a>
+                <a href="relatorio.html"><img src="https://www.aogopa.com/assets/help-BofGhCTm.svg" alt="Logotipo Relatório"></a>
+                <a href="produtos.html"><img src="https://bot.quantvision.live/app/img/bot.png" alt="Logotipo Relatório"></a>
+                <a href="relatorio.html"><img src="https://www.aogopa.com/assets/user2-D8gBNcca.svg" alt="Logotipo Relatório"></a>
+            </div>
+        </div>
     </div>
-</div>
 
-        </div>
+    <!-- Menu Inferior para os logotipos -->
+    <div class="bottom-menu">
+        <a href="recarregar.html"><img src="https://bot.quantvision.live/app/img/bot4.png" alt="Logotipo Relatório"><br>Deposito</a>
+        <a href="equipe.html"><img src="https://bot.quantvision.live/app/img/bot3.png" alt="Logotipo Relatório"><br>Equipe</a>
+        <a href="servicos.html"><img src="https://www.aogopa.com/assets/contact-ywXZcYW-.svg" alt="Logotipo Relatório"><br>Serviços</a>
+        <a href="registros.html"><img src="https://www.aogopa.com/assets/w-left-Dsh92OaU.svg" alt="Logotipo Relatório"><br><br>Histórico</a>
+        <a href="sacar.html"><img src="https://www.aogopa.com/assets/wt2-BA93ok9f.svg" alt="Logotipo Relatório"><br>Extrair</a>
+        <a href="produtos.html"><img src="https://bot.quantvision.live/app/img/bot2.png"  alt="Logotipo Relatório"><br>Bot</a>
+        
+    </div>
+</body>
+
+</div>
     </div>
 
     <script>

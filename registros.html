@@ -13,7 +13,7 @@
 
         body {
             font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #A0D8F1, #5BB2F1); /* Azul água */
+            background-image: url(https://fc244.world/api//file/activity/ae34384115b24d9c97823116cd09bcc6.jpg);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -22,7 +22,7 @@
         }
 
         .container {
-            background-color: #ffffff;
+            background-image: url(https://fc244.com/static/bg_mine.png);
             padding: 30px;
             border-radius: 12px;
             box-shadow: 0 12px 36px rgba(0, 0, 0, 0.1);
@@ -33,7 +33,7 @@
 
         h2 {
             margin-bottom: 24px;
-            color: #3498db; /* Azul mais claro */
+            color: #f6f9fb; /* Azul mais claro */
         }
 
         input {
@@ -48,7 +48,7 @@
         button {
             width: 100%;
             padding: 14px;
-            background-color: #3498db; /* Azul claro */
+            background-color: #f5f9fc; /* Azul claro */
             color: #fff;
             border: none;
             border-radius: 6px;
@@ -57,7 +57,7 @@
         }
 
         button:hover {
-            background-color: #2980b9; /* Azul mais escuro */
+            background-color: #f5f7f8; /* Azul mais escuro */
         }
 
         .toggle-form {
@@ -161,7 +161,7 @@
 
                     // Exibir transações de retiradas como cartões
                     if (transacoesUsuario.length === 0) {
-                        feedbackRegistros.textContent = 'Você não tem registros de retiradas ainda.';
+                        feedbackRegistros.textContent = 'Você não tem registros recentes.';
                         feedbackRegistros.className = 'error';
                     } else {
                         transacoesUsuario.forEach(transacao => {

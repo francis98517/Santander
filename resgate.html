@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convide e Ganhe Vouchers!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url(https://united976.com/static/colorIcon/img/myBg.png);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        .container {
+            text-align: center;
+            padding: 50px;
+            max-width: 900px;
+            width: 100%;
+        }
+
+        .title {
+            font-size: 30px;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .message {
+            font-size: 18px;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+        }
+
+        .cta-button {
+            background-color: #3498db;
+            color: white;
+            padding: 15px 25px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .cta-button:hover {
+            background-color: #f3f9fd;
+        }
+
+        .voucher-info {
+            background-image: url(https://fc244.world/api//file/front/ca3898619b5b418f8ffb9421062edd68.png);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .carousel-card {
+            width: 100%;
+            max-width: 600px;
+            margin: 30px auto;
+            padding: 20px;
+            background-image: url(https://www.aogopa.com/assets/ai2-BZStCWwn.png);
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .carousel-images {
+            display: flex;
+            transition: transform 1s ease-in-out;
+        }
+
+        .carousel-images img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .logotipo {
+            margin-top: 30px;
+            cursor: pointer;
+        }
+
+        .logotipo img {
+            width: 150px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">Convide Seus Amigos e Ganhe Vouchers!</h1>
+        <p class="message">
+            Convide seus amigos e familiares para ganhar vouchers exclusivos. 
+            Os vouchers têm uma durabilidade de 4 horas após resgatar, 
+            e você pode retirá-los imediatamente para sua conta bancária.
+        </p>
+
+        <div class="voucher-info">
+            <p><strong>Convite Especial:</strong> Convide agora e ganhe grandes vouchers para usar como preferir.</p>
+            <p><strong>Importante:</strong> Os vouchers têm durabilidade de 4 horas após o resgate.</p>
+            <p><strong>Promoção Santander:</strong> O Santander oferece as melhores vantagens e facilidade de resgate!</p>
+            <a href="voucher.html" class="cta-button">Resgatar Voucher Agora</a>
+        </div>
+
+        <!-- Carrossel de Imagens -->
+        <div class="carousel-card">
+            <div class="carousel-images" id="carouselImages">
+                <img src="https://fc244.world/api//file/front/f0fb78f7dc304be187824a5ddf91b826.jpg" alt="Imagem 1">
+                <img src="https://api.united976.com/upload/image/20240721/b001eabceb7b9c8182d6676c74e4d7fc.png" alt="Imagem 2">
+                <img src="https://fc244.world/static/userLevel/0.svg" alt="Imagem 3">
+                <img src="https://api.united976.com/upload/image/20240721/903f220e7e20970f35e352a912ff39b2.png" alt="Imagem 3">
+                <img src="https://fc244.world/api//file/front/d0aafd3426ad4797a25da498bc3547ee.jpg" alt="Imagem 3">
+                <img src="https://api.united976.com/upload/image/20240805/73b1b9409a7d91edf1b765fda99ec6ec.png" alt="Imagem 3">
+                <img src="https://fc244.world/static/country/pt-AO.png" alt="Imagem 3">
+            </div>
+        </div>
+
+        <div class="logotipo">
+            <a href="voucher.html">
+                <img src="https://fc244.world/static/userLevel/0.svg" alt="Santander Logo">
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Script para o carrossel de imagens
+        let currentIndex = 0;
+        const images = document.querySelectorAll('.carousel-images img');
+        const totalImages = images.length;
+
+        function changeImage() {
+            currentIndex = (currentIndex + 1) % totalImages;
+            document.getElementById('carouselImages').style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+
+        setInterval(changeImage, 3000); // Troca a imagem a cada 3 segundos
+    </script>
+</body>
+</html>
