@@ -109,7 +109,7 @@
     <div class="container">
         <h2>Retirar Fundos</h2>
         <form id="form-retirar">
-            <label for="valor">Valor a ser retirado (mínimo 2500 AKZ)</label>
+            <label for="valor">Valor a ser retirado (mínimo 3000 AKZ)</label>
             <input type="number" id="valor" name="valor" placeholder="Valor" required>
 
             <label for="iban">IBAN</label>
@@ -121,7 +121,7 @@
             <label for="beneficiario">Nome do Beneficiário</label>
             <input type="text" id="beneficiario" name="beneficiario" placeholder="Nome do Beneficiário" required>
 
-            <label for="valor-a-receber">Valor a receber após taxa de 13%</label>
+            <label for="valor-a-receber">Valor a receber após taxa de 16%</label>
             <input type="text" id="valor-a-receber" name="valor-a-receber" placeholder="Valor a Receber" disabled>
 
             <button type="submit">Retirar</button>
@@ -171,7 +171,7 @@
                 const banco = document.getElementById('banco').value;
                 const beneficiario = document.getElementById('beneficiario').value;
 
-                if (valor < 2500) {
+                if (valor < 3000) {
                     feedbackRetirada.textContent = 'O valor de saque deve ser no mínimo 2500 AKZ.';
                     feedbackRetirada.className = 'error';
                     return;
