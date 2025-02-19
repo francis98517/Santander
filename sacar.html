@@ -132,9 +132,9 @@
         <div class="dicas">
             <h3>Dicas:</h3>
             <p>- As transferências estão disponíveis 24/7</p>
-            <p>- Cobramos 13% de taxa no ato de retirada.</p>
-            <p>- Após solicitar a transferência, você precisará aguardar no mínimo 48 horas para o dinheiro chegar em sua conta bancária.</p>
-            <p>- O valor mínimo de saque é 2500 AKZ e não há limite máximo.</p>
+            <p>- Cobramos 16% de taxa no ato de retirada.</p>
+            <p>- Após solicitar a transferência, você precisará aguardar no máximo 48 horas para o dinheiro chegar em sua conta bancária.</p>
+            <p>- O valor mínimo de saque é 3.000 AKZ e não há limite máximo.</p>
         </div>
     </div>
 
@@ -154,8 +154,8 @@
             // Função para atualizar o valor a receber ao vivo
             valorInput.addEventListener('input', function () {
                 const valor = parseFloat(valorInput.value);
-                if (valor >= 2500) {
-                    const taxa = valor * 0.13;
+                if (valor >= 3000) {
+                    const taxa = valor * 0.16;
                     const valorLiquido = valor - taxa;
                     valorReceberInput.value = valorLiquido.toFixed(2);
                 } else {
@@ -183,7 +183,7 @@
                     return;
                 }
 
-                const taxa = valor * 0.13;
+                const taxa = valor * 0.16;
                 const valorLiquido = valor - taxa;
 
                 const saldoRestante = usuarioLogado.saldo - valor;
