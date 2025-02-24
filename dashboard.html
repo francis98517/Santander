@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel do Usuário</title>
+    <title>Atualização do Sistema</title>
     <style>
+        /* Reset básico de estilos */
         * {
             margin: 0;
             padding: 0;
@@ -12,518 +13,54 @@
         }
 
         body {
-            font-family: 'Roboto', sans-serif;
-            background: url('https://www.aogopa.com/assets/home-noti-CyBBgD-v.png') no-repeat center center fixed;
-            background-size: cover;
+            font-family: Arial, sans-serif;
+            background-color: #e0f7fa;
             display: flex;
-            flex-direction: column;
-            height: 100vh;
-            color: #333;
-            overflow: hidden;
-        }
-        /* Estilos gerais para o carrossel */
-.carousel-card {
-    width: 100%;
-    max-width: 600px;
-    margin: 0 auto;
-    background-color: #fff;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    position: relative;
-}
-
-.carousel-images {
-    display: flex;
-    transition: transform 0.5s ease;
-}
-
-.carousel-images img {
-    width: 100%;
-    border-radius: 10px;
-}
-
-/* Botões de navegação */
-.carousel-navigation {
-    position: absolute;
-    top: 50%;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    transform: translateY(-50%);
-}
-
-.carousel-navigation button {
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    font-size: 18px;
-    border-radius: 50%;
-    opacity: 0.5;
-}
-
-.carousel-navigation button:hover {
-    opacity: 1;
-}
-
-/* Controle de visibilidade do botão */
-.carousel-navigation button:disabled {
-    opacity: 0.2;
-}
-
-
-        /* Cabeçalho */
-        .header {
-            background-color: rgba(52, 152, 219, 0.8);
-            color: white;
-            padding: 15px 30px;
-            text-align: center;
-            font-size: 24px;
-            font-weight: bold;
-            display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            left: 0;
-            z-index: 10;
-        }
-
-        .header .header-title {
-            flex-grow: 1;
-            text-align: center;
-        }
-
-        .header .logout {
-            background-color: #f44336;
-            padding: 10px 20px;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-
-        .header .logout:hover {
-            background-color: #e53935;
-        }
-
-        /* Menu Lateral */
-        .sidebar {
-            width: 0;
             height: 100vh;
-            background-color: #2980b9;
-            color: #fff;
-            padding-top: 20px;
-            position: fixed;
-            top: 0;
-            left: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            transition: width 0.3s ease;
-            overflow: hidden;
-            z-index: 5;
-        }
-
-        .sidebar.open {
-            width: 100%;
-        }
-
-        .sidebar .logo {
-            padding: 20px;
-            text-align: center;
-            background-color: #34495e;
-        }
-
-        .sidebar .logo span {
-            font-size: 50px;
-            font-weight: bold;
             color: white;
         }
 
-        .sidebar h2 {
+        .container {
             text-align: center;
+            padding: 20px;
+            max-width: 800px;
+        }
+
+        .solar-panel {
+            background: linear-gradient(to right, #0077b6, #00b4d8);
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            color: white;
+        }
+
+        h1 {
+            font-size: 2.5rem;
             margin-bottom: 20px;
         }
 
-        .sidebar a {
-            padding: 14px;
-            color: white;
-            text-decoration: none;
-            font-size: 16px;
-            transition: background-color 0.3s ease;
-            text-align: center;
+        p {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
         }
 
-        .sidebar a:hover {
-            background-color: #444;
-        }
-
-        /* Menu Inferior para Logotipos */
-        .bottom-menu {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: rgba(52, 152, 219, 0.8);
-            display: flex;
-            justify-content: space-around;
-            padding: 10px;
-            z-index: 10;
-        }
-
-        .bottom-menu a {
-            color: white;
-            font-size: 16px;
-            text-decoration: none;
-            text-align: center;
-        }
-
-        .bottom-menu a:hover {
-            background-color: #2980b9;
-            border-radius: 5px;
-            padding: 5px;
-        }
-
-        .main-container {
-            padding: 30px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            height: calc(100vh - 120px); /* Ajuste para não cobrir o menu inferior */
-            margin-top: 80px;
-            transition: margin-left 0.3s ease;
-        }
-
-        .dashboard-header {
-            display: flex;
-            justify-content: flex-start;
-            width: 100%;
-            align-items: center;
-        }
-
-        .dashboard-header h2 {
-            font-size: 24px;
-            color: #ff2a00;
-            background-color: #fff;
-            padding: 10px;
-            border-radius: 5px;
+        .large-text {
+            font-size: 2rem;
+            margin-top: 30px;
             font-weight: bold;
-            text-align: left;
-            margin-left: 20px;
-        }
-
-        /* Cartão contendo os logotipos */
-        .logo-card {
-            background-image: url('https://fc244.com/static/bg_mine.png'); 
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 20px;
-            text-align: center;
-            color: white;
-        }
-
-        /* Container dos logotipos dentro do cartão */
-        .logo-container {
-            display: flex; 
-            flex-wrap: wrap;
-            gap: 20px; 
-            justify-content: center; 
-            padding-bottom: 10px;
-        }
-
-        /* Estilo dos logotipos */
-        .logo-container img {
-            height: 80px;
-            width: auto;
-            cursor: pointer;
-            max-width: 100%;
-        }
-
-        /* Media Queries para Responsividade */
-        @media (max-width: 768px) {
-            .logo-container img {
-                height: 60px;
-            }
-
-            .header {
-                padding: 10px;
-                font-size: 20px;
-            }
-
-            .menu-card {
-                margin: 10px;
-                padding: 15px;
-            }
-
-            .user-info-card, .balance-card {
-                margin: 10px;
-                padding: 10px;
-            }
         }
     </style>
 </head>
 <body>
-    
-    <!-- Cabeçalho com o nome "Santander" -->
-    <div class="header">
-        <button class="logout" id="logout-btn">Sair</button>
-        <div class="header-title">Santander</div>
-        <div class="hamburger" id="hamburger-btn">
-            <span></span>
-            <span></span>
-            <span></span>
+    <div class="container">
+        <div class="solar-panel">
+            <h1>Estamos em atualização</h1>
+            <p>Prometemos que a atualização trará mais benefícios a todos os investidores.</p>
+            <p>Prometemos que volte novamente no site hoje às 16h. Obrigado pela paciência.</p>
+            <p class="large-text">Estamos tratando de todos os problemas que ocorreram com nossos investidores.</p>
         </div>
     </div>
-
-    <!-- Menu Lateral -->
-    <div class="sidebar" id="sidebar">
-        <div class="logo">
-            <span>S</span> <!-- Letra "S" no lugar do logotipo do Bitcoin -->
-        </div>
-        <h2>Informações do Usuário</h2>
-
-        <div class="balance-card">
-            <h3>Seu Saldo</h3>
-            <div class="balance" id="saldo">
-                <img src="https://www.aogopa.com/assets/w-bnr-B3xblq2m.png" alt="Carteira" width="30">
-                AKZ 0.00
-                <span id="saldo-info"></span>
-            </div>
-            <div>
-                <button class="copy-btn" id="recarregar-btn">Recarregar</button>
-                <button class="copy-btn" id="sacar-btn">Sacar</button>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- Página Principal -->
-    <div class="main-container">
-        <div class="dashboard-header">
-            <img src="https://bot.quantvision.live/app/img/laptop.gif" alt="Card" width="48">
-            <h2>Olá!</h2>
-        </div>
-
-        <!-- Cartão contendo os logotipos -->
-        <div class="logo-card">
-            <div class="logo-container">
-                <a href="meu.html"><img src="https://www.aogopa.com/assets/user7-D4q2IEUD.svg" alt="Logotipo Relatório"><br>Fundos</a>
-                <a href="termos.html"><img src="https://bot.quantvision.live/app/img/bot4.png" alt="Logotipo Relatório"><br>Sobre</a>
-                <a href="servicos.html"><img src="https://www.aogopa.com/assets/contact-ywXZcYW-.svg" alt="Logotipo Relatório"><br>Atendim...</a>
-                <a href="equipe.html"><img src="https://bot.quantvision.live/app/img/bot3.png" alt="Logotipo Relatório"><br>Equipe</a>
-                <a href="bmd.html"><img src="https://www.aogopa.com/assets/help-BofGhCTm.svg" alt="Logotipo Relatório"><br>Admin</a>
-                <a href="produtos.html"><img src="https://bot.quantvision.live/app/img/bot.png" alt="Logotipo Relatório"><br>Produtos</a>
-                <a href="informacoes.html"><img src="https://united976.com/static/colorIcon/m_list2.png" alt="Logotipo Relatório"><br>Info...</a>
-                <a href="resgate.html"><img src="https://fc244.world/static/userLevel/0.svg" alt="Logotipo Relatório"><br>Bonus</a>
-                <a href="publicacoes.html"><img src="https://www.aogopa.com/assets/secu1-DK3dpOi7.svg" alt="Logotipo Relatório"><br>Publicações</a>
-            </div>
-        </div>
-
-        </div>
-    </div>
-
-    <!-- Menu Inferior para os logotipos -->
-    <div class="bottom-menu">
-        <a href="recarregar.html"><img src="https://bot.quantvision.live/app/img/bot4.png" alt="Logotipo Relatório"><br>Deposito</a>
-        <a href="equipe.html"><img src="https://bot.quantvision.live/app/img/bot3.png" alt="Logotipo Relatório"><br>Equipe</a>
-        <a href="servicos.html"><img src="https://www.aogopa.com/assets/contact-ywXZcYW-.svg" alt="Logotipo Relatório"><br>Serviços</a>
-        <a href="registros.html"><img src="https://www.aogopa.com/assets/wt2-BA93ok9f.svg" alt="Logotipo Relatório"><br>Histórico</a>
-        <a href="sacar.html"><img src="https://www.aogopa.com/assets/wt2-BA93ok9f.svg" alt="Logotipo Relatório"><br>Extrair</a>
-        <a href="produtos.html"><img src="https://bot.quantvision.live/app/img/bot2.png"  alt="Logotipo Relatório"><br>Bot</a>
-    </div>
-
-<body>
-    <!-- Cabeçalho com o nome "Santander" -->
-    <div class="header">
-        <button class="logout" id="logout-btn">Sair</button>
-        <div class="header-title">Santander</div>
-        <div class="hamburger" id="hamburger-btn">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-    </div>
-
-    <!-- Menu Lateral -->
-    <div class="sidebar" id="sidebar">
-        <div class="logo">
-            <span>S</span> <!-- Letra "S" no lugar do logotipo do Bitcoin -->
-        </div>
-        <h2>Informações do Usuário</h2>
-
-        <div class="balance-card">
-            <h3>Seu Saldo</h3>
-            <div class="balance" id="saldo">
-                <img src="https://www.aogopa.com/assets/w-bnr-B3xblq2m.png" alt="Carteira" width="30">
-                AKZ 0.00
-                <span id="saldo-info"></span>
-            </div>
-            <div>
-                <button class="copy-btn" id="recarregar-btn">Recarregar</button>
-                <button class="copy-btn" id="sacar-btn">Sacar</button>
-            </div>
-        </div>
-
-        <div class="user-info-card">
-            <div class="user-info">
-                <p><span>Nome:</span> <span id="user-name">Nome do Usuário</span></p>
-                <p><span>ID:</span> <span id="user-id">123456</span></p>
-                <button class="copy-btn" id="copy-id">Copiar ID</button>
-            </div>
-        </div>
-    </div>
-    <div class="carousel-card">
-    <div class="carousel-images">
-        <img src="https://placeimg.com/600/400/people" alt="Imagem 1">
-        <img src="https://placeimg.com/600/400/nature" alt="Imagem 2">
-        <img src="https://placeimg.com/600/400/tech" alt="Imagem 3">
-    </div>
-
-    <!-- Navegação do Carousel -->
-    <div class="carousel-navigation">
-        <button id="prevBtn">&lt;</button>
-        <button id="nextBtn">&gt;</button>
-    </div>
-</div>
-
-
-    <!-- Página Principal -->
-    <div class="main-container">
-        <div class="dashboard-header">
-            <img src="https://bot.quantvision.live/app/img/laptop.gif" alt="Card" width="48">
-            <h2>Olá!</h2>
-        </div>
-
-        <!-- Cartão contendo os logotipos -->
-        <div class="logo-card">
-            <div class="logo-container">
-                <a href="informacoes.html"><img src="https://www.aogopa.com/assets/user7-D4q2IEUD.svg" alt="Logotipo Relatório"></a>
-                <a href="termos.html"><img src="https://bot.quantvision.live/app/img/bot4.png" alt="Logotipo Relatório"></a>
-                <a href="servicos.html"><img src="https://www.aogopa.com/assets/contact-ywXZcYW-.svg" alt="Logotipo Relatório"></a>
-                <a href="equipe.html"><img src="https://bot.quantvision.live/app/img/bot3.png" alt="Logotipo Relatório"></a>
-                <a href="relatorio.html"><img src="https://www.aogopa.com/assets/help-BofGhCTm.svg" alt="Logotipo Relatório"></a>
-                <a href="produtos.html"><img src="https://bot.quantvision.live/app/img/bot.png" alt="Logotipo Relatório"></a>
-                <a href="relatorio.html"><img src="https://www.aogopa.com/assets/user2-D8gBNcca.svg" alt="Logotipo Relatório"></a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Menu Inferior para os logotipos -->
-    <div class="bottom-menu">
-        <a href="recarregar.html"><img src="https://bot.quantvision.live/app/img/bot4.png" alt="Logotipo Relatório"><br>Deposito</a>
-        <a href="equipe.html"><img src="https://bot.quantvision.live/app/img/bot3.png" alt="Logotipo Relatório"><br>Equipe</a>
-        <a href="servicos.html"><img src="https://www.aogopa.com/assets/contact-ywXZcYW-.svg" alt="Logotipo Relatório"><br>Serviços</a>
-        <a href="registros.html"><img src="https://www.aogopa.com/assets/w-left-Dsh92OaU.svg" alt="Logotipo Relatório"><br><br>Histórico</a>
-        <a href="sacar.html"><img src="https://www.aogopa.com/assets/wt2-BA93ok9f.svg" alt="Logotipo Relatório"><br>Extrair</a>
-        <a href="produtos.html"><img src="https://bot.quantvision.live/app/img/bot2.png"  alt="Logotipo Relatório"><br>Bot</a>
-        
-    </div>
-</body>
-
-</div>
-    </div>
-
-    <script>
-        // Script para controle do menu hambúrguer
-        const hamburgerBtn = document.getElementById('hamburger-btn');
-        const sidebar = document.getElementById('sidebar');
-        const mainContainer = document.querySelector('.main-container');
-
-        hamburgerBtn.addEventListener('click', () => {
-            sidebar.classList.toggle('open');
-            mainContainer.classList.toggle('sidebar-open');
-        });
-    </script>
-</body>
-</html>
-
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const saldoElement = document.getElementById('saldo');
-            const saldoInfo = document.getElementById('saldo-info');
-            const logoutBtn = document.getElementById('logout-btn');
-            const hamburgerBtn = document.getElementById('hamburger-btn');
-            const sidebar = document.getElementById('sidebar');
-            const mainContainer = document.querySelector('.main-container');
-            const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
-
-            if (usuarioLogado) {
-                saldoElement.textContent = `AKZ ${usuarioLogado.saldo.toFixed(2)}`;
-                saldoInfo.textContent = ` | Código de Convite: ${usuarioLogado.codigo_convite}`;
-
-                document.getElementById('user-name').textContent = usuarioLogado.nome;
-                document.getElementById('user-id').textContent = `ID: ${usuarioLogado.id}`;
-            } else {
-                window.location.href = 'index.html';
-            }
-
-            // Logar e Redirecionar para outras páginas
-            logoutBtn.addEventListener('click', function () {
-                localStorage.removeItem('usuarioLogado');
-                window.location.href = 'index.html';
-            });
-
-            // Redirecionar os botões Recarregar e Sacar
-            document.getElementById('recarregar-btn').addEventListener('click', function () {
-                window.location.href = 'recarregar.html'; // Substitua o link conforme necessário
-            });
-
-            document.getElementById('sacar-btn').addEventListener('click', function () {
-                window.location.href = 'sacar.html'; // Substitua o link conforme necessário
-            });
-
-            // Copiar o ID
-            document.getElementById('copy-id').addEventListener('click', function () {
-                const userId = document.getElementById('user-id').textContent.split(': ')[1];
-                navigator.clipboard.writeText(userId).then(() => {
-                    alert("ID copiado com sucesso!");
-                });
-            });
-
-            // Redirecionar os itens da página principal
-            document.getElementById('bmd').addEventListener('click', function () {
-                window.location.href = 'bmd.html';
-            });
-
-            document.getElementById('informacoes').addEventListener('click', function () {
-                window.location.href = 'informacoes.html';
-            });
-
-            document.getElementById('servicos').addEventListener('click', function () {
-                window.location.href = 'servicos.html';
-            });
-
-            document.getElementById('produtos').addEventListener('click', function () {
-                window.location.href = 'produtos.html';
-            });
-
-            document.getElementById('registros').addEventListener('click', function () {
-                window.location.href = 'registros.html';
-            });
-
-            document.getElementById('equipe').addEventListener('click', function () {
-                window.location.href = 'equipe.html';
-            });
-
-            document.getElementById('my').addEventListener('click', function () {
-                window.location.href = 'my.html';
-            });
-
-            document.getElementById('termos').addEventListener('click', function () {
-                window.location.href = 'termos.html';
-            });
-
-            // Controlar a visibilidade do menu hamburguer
-            hamburgerBtn.addEventListener('click', function () {
-                sidebar.classList.toggle('open');
-                mainContainer.classList.toggle('sidebar-open'); // Mover o conteúdo ao abrir o menu
-            });
-        });
-    </script>
 </body>
 </html>

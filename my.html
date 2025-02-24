@@ -3,206 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Histórico de Investimentos</title>
+    <title>Atualização do Sistema</title>
     <style>
-        /* Estilos gerais */
-        body {
-            font-family: 'Arial', sans-serif;
+        /* Reset básico de estilos */
+        * {
             margin: 0;
             padding: 0;
-            background: linear-gradient(135deg, #a2dff7, #6ab7f7); /* Cor de água */
-            overflow: hidden; /* Impede o scroll da página */
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0f7fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
         }
 
         .container {
-            width: 100%;
-            height: 100vh; /* Ocupa toda a altura da tela */
-            margin: 0;
-            padding: 0 15px; /* Adiciona um pequeno padding para as laterais */
-            background-color: #fff;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            overflow-y: auto; /* Adiciona rolagem no conteúdo, se necessário */
-        }
-
-        h2 {
             text-align: center;
-            color: #3498db; /* Azul claro */
-            font-size: 24px;
-            margin-bottom: 20px;
-            padding-top: 20px;
-        }
-
-        .cards-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            padding-bottom: 20px; /* Garante que a rolagem apareça se houver mais cards */
-            overflow: auto;
-            width: 100%; /* Garantir que o container ocupe 100% da largura */
-        }
-
-        .card {
-            background-color: #3498db; /* Cartões azuis */
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            width: 300px;
             padding: 20px;
+            max-width: 800px;
+        }
+
+        .solar-panel {
+            background: linear-gradient(to right, #0077b6, #00b4d8);
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            color: white;
+        }
+
+        h1 {
+            font-size: 2.5rem;
             margin-bottom: 20px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: default; /* Evita interações como 'click' acidental */
-            color: #fff; /* Texto branco para contraste */
         }
 
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .card-header {
-            font-size: 18px;
-            font-weight: bold;
+        p {
+            font-size: 1.5rem;
             margin-bottom: 15px;
         }
 
-        .card-body {
-            font-size: 14px;
-            margin-bottom: 10px;
-        }
-
-        .status-pendente {
-            color: #1abc9c;
+        .large-text {
+            font-size: 2rem;
+            margin-top: 30px;
             font-weight: bold;
-        }
-
-        .status-expirado {
-            color: #e74c3c;
-            font-weight: bold;
-        }
-
-        .feedback {
-            font-size: 14px;
-            text-align: center;
-            margin-top: 20px;
-            color: #888;
-        }
-
-        /* Responsividade */
-        @media (max-width: 768px) {
-            h2 {
-                font-size: 20px;
-            }
-
-            .card {
-                width: 100%; /* Ajusta o cartão para ocupar 100% da largura em telas menores */
-                padding: 15px;
-            }
-
-            .card-header {
-                font-size: 16px;
-            }
-
-            .card-body {
-                font-size: 12px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            h2 {
-                font-size: 18px;
-            }
-
-            .card {
-                width: 100%; /* Cartões ocupando 100% da largura da tela no celular */
-                padding: 10px;
-            }
-
-            .card-header {
-                font-size: 14px;
-            }
-
-            .card-body {
-                font-size: 10px;
-            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>Histórico de Investimentos</h2>
-
-        <!-- Container para os cartões -->
-        <div class="cards-container" id="cards-container">
-            <!-- Cartões de histórico de investimentos serão listados aqui -->
+        <div class="solar-panel">
+            <h1>Estamos em atualização</h1>
+            <p>Prometemos que a atualização trará mais benefícios a todos os investidores.</p>
+            <p>Prometemos que volte novamente no site hoje às 16h. Obrigado pela paciência.</p>
+            <p class="large-text">Estamos tratando de todos os problemas que ocorreram com nossos investidores.</p>
         </div>
-
-        <!-- Feedback -->
-        <div id="feedback-produtos" class="feedback"></div>
     </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const cardsContainer = document.getElementById('cards-container');
-            const feedbackProdutos = document.getElementById('feedback-produtos');
-
-            // Recuperar usuário logado do localStorage
-            const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
-
-            // Verificar se o usuário está logado
-            if (!usuarioLogado) {
-                window.location.href = 'index.html'; // Se não estiver logado, redireciona para login
-            }
-
-            // Buscar o histórico de compras do usuário
-            fetch(`https://meuappi.onrender.com/produtos?usuarioId=${usuarioLogado.id}`)
-                .then(response => response.json())
-                .then(compras => {
-                    if (compras.length === 0) {
-                        feedbackProdutos.textContent = 'Você não tem nenhum investimento ativo no momento.';
-                        feedbackProdutos.className = 'feedback'; // Não é mais uma mensagem de erro, mas de informação
-                    } else {
-                        // Exibir as compras em cartões
-                        compras.forEach(compra => {
-                            // Calcular a data de expiração (25 dias após a data de compra)
-                            const dataCompra = new Date(compra.dataCompra);
-                            const dataExpiracao = new Date(dataCompra);
-                            dataExpiracao.setDate(dataExpiracao.getDate() + 25); // Adiciona 25 dias
-
-                            // Verificar se o produto está expirado ou pendente
-                            const hoje = new Date();
-                            let status = 'Pendente';
-                            let statusClass = 'status-pendente';
-
-                            if (dataExpiracao <= hoje) {
-                                status = 'Expirado';
-                                statusClass = 'status-expirado';
-                            }
-
-                            // Criar o cartão
-                            const card = document.createElement('div');
-                            card.classList.add('card');
-
-                            card.innerHTML = `
-                                <div class="card-header">${compra.nomeProduto}</div>
-                                <div class="card-body">
-                                    <p><strong>Data de Compra:</strong> ${dataCompra.toLocaleDateString()}</p>
-                                    <p><strong>Data de Expiração:</strong> ${dataExpiracao.toLocaleDateString()}</p>
-                                    <p class="${statusClass}"><strong>Status:</strong> ${status}</p>
-                                </div>
-                            `;
-
-                            cardsContainer.appendChild(card);
-                        });
-                    }
-                })
-                .catch(error => {
-                    feedbackProdutos.textContent = 'Erro ao carregar o histórico de compras.';
-                    feedbackProdutos.className = 'error';
-                });
-        });
-    </script>
 </body>
 </html>

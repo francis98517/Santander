@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Atualização do Sistema</title>
     <style>
+        /* Reset básico de estilos */
         * {
             margin: 0;
             padding: 0;
@@ -13,380 +14,53 @@
 
         body {
             font-family: Arial, sans-serif;
-            background: url('https://api.united976.com/upload/image/20240721/b001eabceb7b9c8182d6676c74e4d7fc.png') no-repeat center center fixed;
+            background-color: #e0f7fa;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            color: #03cf70;
+            color: white;
         }
 
         .container {
-            background: url('https://api.united976.com/upload/image/20240721/b001eabceb7b9c8182d6676c74e4d7fc.png') no-repeat center center fixed;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 12px 36px rgba(253, 255, 254, 0.08);
             text-align: center;
-            width: 100%;
-            max-width: 400px; /* Melhor ajuste para dispositivos móveis */
+            padding: 20px;
+            max-width: 800px;
         }
 
-        h2 {
-            margin-bottom: 24px;
-            color: #db3463; /* Azul mais claro */
+        .solar-panel {
+            background: linear-gradient(to right, #0077b6, #00b4d8);
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            color: white;
         }
 
-        input {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border: 1px solid #2418d0;
-            border-radius: 6px;
-            font-size: 16px;
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
         }
 
-        button {
-            width: 100%;
-            padding: 14px;
-            background-color: #db3447; /* Azul claro */
-            color: #010009;
-            border: none;
-            border-radius: 6px;
-            font-size: 18px;
-            cursor: pointer;
+        p {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
         }
 
-        button:hover {
-            background: url('https://api.united976.com/upload/image/20240721/b001eabceb7b9c8182d6676c74e4d7fc.png') no-repeat center center fixed;
-        }
-
-        .toggle-form {
-            margin-top: 20px;
-        }
-
-        .toggle-form a {
-            color: #eff7f2;
-            text-decoration: none;
-        }
-
-        .toggle-form a:hover {
-            text-decoration: underline;
-        }
-        
-        .error {
-            color: red;
-            font-size: 14px;
-        }
-
-        .success {
-            color: green;
-            font-size: 14px;
-        }
-
-        /* Ajustes para dispositivos móveis */
-        @media (max-width: 480px) {
-            .container {
-                padding: 20px;
-                width: 90%;
-            }
-
-            h2 {
-                font-size: 22px;
-            }
-
-            input, button {
-                font-size: 16px;
-            }
+        .large-text {
+            font-size: 2rem;
+            margin-top: 30px;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Nome da Plataforma -->
-        <div class="platform-name">Santander</div>
-
-        <!-- Tela de Login -->
-        <div id="login" class="form-container">
-            <h2>Login</h2>
-            <form id="form-login">
-                <input type="text" id="telefone-login" name="telefone-login" placeholder="Número de Telefone ou E-mail" required>
-                <input type="password" id="senha-login" name="senha-login" placeholder="Senha" required>
-                <button type="submit">Entrar</button>
-            </form>
-            <div id="feedback-login" class="feedback"></div>
-            <div class="toggle-form">
-                <p>Não tem uma conta? <a href="#" id="ir-cadastro">Cadastre-se</a></p>
-            </div>
-            
-            <!-- Logotipo do Telegram para suporte -->
-            <div class="telegram-logo-container">
-                <p>Com dúvidas?:</p>
-                <a href="https://t.me/Noaholiver23" target="_blank">
-                    <img src="https://united976.com/static/service.png" alt="Logo do Telegram">
-                </a>
-            </div>
-        </div>
-
-        <!-- Tela de Cadastro -->
-        <div id="cadastro" class="form-container" style="display: none;">
-            <h2>Cadastro</h2>
-            <form id="form-cadastro">
-                <input type="text" id="nome" name="nome" placeholder="Nome Completo" required>
-
-                <!-- Número de telefone ou e-mail -->
-                <input type="text" id="telefone" name="telefone" placeholder="Número de Telefone ou E-mail" required>
-                <div id="feedback-telefone" class="error"></div>
-
-                <input type="password" id="senha" name="senha" placeholder="Senha (mínimo 6 caracteres)" required>
-                <div id="feedback-senha" class="error"></div>
-
-                <input type="password" id="confirmar-senha" name="confirmar-senha" placeholder="Confirmar Senha" required>
-                <div id="feedback-confirmar-senha" class="error"></div>
-
-                <input type="text" id="codigo-convite" name="codigo-convite" placeholder="Código de Convite (Obrigatório)" required>
-                <div id="feedback-codigo-convite" class="error"></div>
-
-                <button type="submit">Cadastrar</button>
-            </form>
-            <div id="feedback-cadastro" class="feedback"></div>
-            <div class="toggle-form">
-                <p>Já tem uma conta? <a href="#" id="ir-login">Faça Login</a></p>
-            </div>
+        <div class="solar-panel">
+            <h1>Estamos em atualização</h1>
+            <p>Prometemos que a atualização trará mais benefícios a todos os investidores.</p>
+            <p>Prometemos que volte novamente no site hoje às 16h. Obrigado pela paciência.</p>
+            <p class="large-text">Estamos tratando de todos os problemas que ocorreram com nossos investidores.</p>
         </div>
     </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const formCadastro = document.getElementById('form-cadastro');
-            const formLogin = document.getElementById('form-login');
-            const feedbackCadastro = document.getElementById('feedback-cadastro');
-            const feedbackLogin = document.getElementById('feedback-login');
-            const irLogin = document.getElementById('ir-login');
-            const irCadastro = document.getElementById('ir-cadastro');
-            const cadastroContainer = document.getElementById('cadastro');
-            const loginContainer = document.getElementById('login');
-
-            const feedbackTelefone = document.getElementById('feedback-telefone');
-            const feedbackSenha = document.getElementById('feedback-senha');
-            const feedbackConfirmarSenha = document.getElementById('feedback-confirmar-senha');
-            const feedbackCodigoConvite = document.getElementById('feedback-codigo-convite');
-
-            // Alternar para a tela de cadastro
-            irCadastro.addEventListener('click', function (e) {
-                e.preventDefault();
-                loginContainer.style.display = 'none';
-                cadastroContainer.style.display = 'block';
-            });
-
-            // Alternar para a tela de login
-            irLogin.addEventListener('click', function (e) {
-                e.preventDefault();
-                cadastroContainer.style.display = 'none';
-                loginContainer.style.display = 'block';
-            });
-
-            // Função para validar e-mail
-            function validarEmail(email) {
-                const regexEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-                return regexEmail.test(email);
-            }
-
-            // Função para validar número de telefone (apenas números)
-            function validarTelefone(telefone) {
-                const regexTelefone = /^[0-9]{9}$/; // Considerando o número de telefone com 9 dígitos
-                return regexTelefone.test(telefone);
-            }
-
-            // Função para validar telefone único
-            function validarTelefoneUnico(telefone) {
-                return fetch('https://meuappi.onrender.com/usuarios')  // Alterado para sua API
-                    .then(response => response.json())
-                    .then(usuarios => {
-                        return !usuarios.some(usuario => usuario.telefone === telefone);
-                    })
-                    .catch(error => {
-                        console.error("Erro ao validar o telefone:", error);
-                        return false;  // Se houver erro, assume que o telefone pode ser único
-                    });
-            }
-
-            // Função para validar o código de convite
-            function validarCodigoConvite(codigo) {
-                return fetch('https://meuappi.onrender.com/usuarios')  // Alterado para sua API
-                    .then(response => response.json())
-                    .then(usuarios => {
-                        return usuarios.some(usuario => usuario.codigo_convite === codigo);
-                    })
-                    .catch(error => {
-                        console.error("Erro ao validar o código de convite:", error);
-                        return false;  // Se houver erro, assume que o código não é válido
-                    });
-            }
-
-            // Validação de campos
-            async function validarCadastro() {
-                const nome = document.getElementById('nome').value;
-                const telefone = document.getElementById('telefone').value;
-                const senha = document.getElementById('senha').value;
-                const confirmarSenha = document.getElementById('confirmar-senha').value;
-                const codigoConvite = document.getElementById('codigo-convite').value;
-
-                let isValid = true;
-
-                // Limpar mensagens anteriores
-                feedbackTelefone.textContent = '';
-                feedbackSenha.textContent = '';
-                feedbackConfirmarSenha.textContent = '';
-                feedbackCodigoConvite.textContent = '';
-
-                // Verificar se o número de telefone ou e-mail é válido
-                if (validarEmail(telefone)) {
-                    // E-mail válido, continue
-                } else if (!validarTelefone(telefone)) {
-                    feedbackTelefone.textContent = 'O número de telefone ou e-mail fornecido não é válido.';
-                    document.getElementById('telefone').style.borderColor = 'red';
-                    isValid = false;
-                }
-
-                // Verificar telefone único ou e-mail único
-                const isTelefoneUnico = await validarTelefoneUnico(telefone);
-                if (!isTelefoneUnico) {
-                    feedbackTelefone.textContent = 'Número de telefone ou e-mail já cadastrado.';
-                    document.getElementById('telefone').style.borderColor = 'red';
-                    isValid = false;
-                }
-
-                // Verificar se a senha tem pelo menos 6 caracteres
-                if (senha.length < 6) {
-                    feedbackSenha.textContent = 'A senha deve ter no mínimo 6 caracteres.';
-                    document.getElementById('senha').style.borderColor = 'red';
-                    isValid = false;
-                }
-
-                // Verificar se as senhas coincidem
-                if (senha !== confirmarSenha) {
-                    feedbackConfirmarSenha.textContent = 'As senhas não coincidem.';
-                    document.getElementById('confirmar-senha').style.borderColor = 'red';
-                    isValid = false;
-                }
-
-                // Verificar se o código de convite é válido
-                const isCodigoValido = await validarCodigoConvite(codigoConvite);
-                if (!isCodigoValido) {
-                    feedbackCodigoConvite.textContent = 'O código de convite não é válido.';
-                    document.getElementById('codigo-convite').style.borderColor = 'red';
-                    isValid = false;
-                }
-
-                return isValid;
-            }
-
-            // Cadastro
-            formCadastro.addEventListener('submit', async function (e) {
-                e.preventDefault();
-
-                const isValid = await validarCadastro();
-
-                if (!isValid) {
-                    feedbackCadastro.textContent = 'Por favor, corrija os erros acima.';
-                    feedbackCadastro.className = 'error';
-                    return;
-                }
-
-                const nome = document.getElementById('nome').value;
-                const telefone = document.getElementById('telefone').value;
-                const senha = document.getElementById('senha').value;
-                const codigoConvite = document.getElementById('codigo-convite').value;
-
-                const novoUsuario = {
-                    nome,
-                    telefone,
-                    senha,
-                    codigo_convite: Math.random().toString(36).substr(2, 8),  // Gera um código aleatório de 8 caracteres
-                    codigo_convite_referido: codigoConvite,
-                    saldo: 0
-                };
-
-                // Enviar dados para o backend
-                fetch('https://meuappi.onrender.com/usuarios', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(novoUsuario)
-                })
-                .then(response => response.json())
-                .then(data => {
-                    feedbackCadastro.textContent = 'Cadastro realizado com sucesso!';
-                    feedbackCadastro.className = 'success';
-                    setTimeout(() => {
-                        cadastroContainer.style.display = 'none';
-                        loginContainer.style.display = 'block';
-                    }, 2000);
-                })
-                .catch(error => {
-                    feedbackCadastro.textContent = 'Erro ao realizar cadastro.';
-                    feedbackCadastro.className = 'error';
-                    console.error("Erro no cadastro:", error);
-                });
-            });
-
-            // Login
-            formLogin.addEventListener('submit', function (e) {
-                e.preventDefault();
-
-                const telefoneLogin = document.getElementById('telefone-login').value;
-                const senhaLogin = document.getElementById('senha-login').value;
-
-                // Verificar se é e-mail ou telefone
-                if (validarEmail(telefoneLogin)) {
-                    // Se for e-mail
-                    fetch('https://meuappi.onrender.com/usuarios')
-                    .then(res => res.json())
-                    .then(data => {
-                        const usuario = data.find(u => u.email === telefoneLogin && u.senha === senhaLogin);
-                        if (usuario) {
-                            feedbackLogin.textContent = 'Login bem-sucedido!';
-                            feedbackLogin.className = 'success';
-                            localStorage.setItem('usuarioLogado', JSON.stringify(usuario));
-                            window.location.href = 'dashboard.html';
-                        } else {
-                            feedbackLogin.textContent = 'E-mail ou senha incorretos.';
-                            feedbackLogin.className = 'error';
-                        }
-                    })
-                    .catch(error => {
-                        feedbackLogin.textContent = 'Erro ao fazer login.';
-                        feedbackLogin.className = 'error';
-                        console.error("Erro no login:", error);
-                    });
-                } else if (validarTelefone(telefoneLogin)) {
-                    // Se for telefone
-                    fetch('https://meuappi.onrender.com/usuarios')
-                    .then(res => res.json())
-                    .then(data => {
-                        const usuario = data.find(u => u.telefone === telefoneLogin && u.senha === senhaLogin);
-                        if (usuario) {
-                            feedbackLogin.textContent = 'Login bem-sucedido!';
-                            feedbackLogin.className = 'success';
-                            localStorage.setItem('usuarioLogado', JSON.stringify(usuario));
-                            window.location.href = 'dashboard.html';
-                        } else {
-                            feedbackLogin.textContent = 'Telefone ou senha incorretos.';
-                            feedbackLogin.className = 'error';
-                        }
-                    })
-                    .catch(error => {
-                        feedbackLogin.textContent = 'Erro ao fazer login.';
-                        feedbackLogin.className = 'error';
-                        console.error("Erro no login:", error);
-                    });
-                } else {
-                    feedbackLogin.textContent = 'Por favor, insira um número de telefone ou e-mail válido.';
-                    feedbackLogin.className = 'error';
-                }
-            });
-        });
-    </script>
 </body>
 </html>

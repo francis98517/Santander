@@ -3,231 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Atualização do Sistema</title>
     <style>
-        /* Estilos gerais da página */
-        body {
+        /* Reset básico de estilos */
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
             font-family: Arial, sans-serif;
+            background-color: #e0f7fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             height: 100vh;
-            overflow: hidden; /* Impede que a barra de rolagem apareça */
-        }
-
-        /* Estilos do slideshow */
-        #slideshow {
-            width: 100%;
-            height: 100vh;
-            position: absolute;
-            top: 0;
-            left: 0;
-            overflow: hidden;
-        }
-
-        .slide {
-            display: none;
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* Faz as imagens cobrir toda a tela */
-        }
-
-        /* Estilos para o conteúdo */
-        .content {
-            display: none;
-            position: relative;
-            z-index: 1;
-            background-color: rgba(0, 0, 0, 0.6);
             color: white;
+        }
+
+        .container {
             text-align: center;
             padding: 20px;
+            max-width: 800px;
         }
 
-        /* Estilos do card com nome e ID */
-        #user-info-card {
-            background-image: url('https://www.aogopa.com/assets/w-bnr-B3xblq2m.png');
-            background-size: cover;
+        .solar-panel {
+            background: linear-gradient(to right, #0077b6, #00b4d8);
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             color: white;
-            padding: 20px;
-            border-radius: 15px;
-            max-width: 400px;
-            margin: 50px auto;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
         }
 
-        /* Estilos do card com saldo e botões */
-        #balance-card {
-            background-image: url('https://www.aogopa.com/assets/w-bnr-B3xblq2m.png');
-            background-size: cover;
-            color: white;
-            padding: 20px;
-            border-radius: 15px;
-            max-width: 400px;
-            margin: 20px auto;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
         }
 
-        /* Estilo para os botões de recarregar e sacar */
-        .action-btn {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            border-radius: 5px;
-            margin-top: 10px;
-            text-decoration: none;
+        p {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
         }
 
-        .action-btn:hover {
-            background-color: #45a049;
-        }
-
-        /* Estilo para o botão de copiar */
-        .copy-btn {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            cursor: pointer;
-            border-radius: 5px;
-            margin-left: 10px;
-        }
-
-        .copy-btn:hover {
-            background-color: #45a049;
-        }
-
-        /* Logotipo dos botões de recarregar e sacar */
-        .btn-logo {
-            width: 30px;
-            height: 30px;
-            margin-right: 10px;
-        }
-
-        /* Estilo do botão de sair no canto superior direito */
-        .btn-sair {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background-color: transparent;
-            border: none;
-            font-size: 30px;
-            color: #fff;
-            cursor: pointer;
-        }
-
-        .btn-sair:hover {
-            color: #ff5733; /* Muda a cor ao passar o mouse */
+        .large-text {
+            font-size: 2rem;
+            margin-top: 30px;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
-
-    <!-- Botão de sair -->
-    <button class="btn-sair" onclick="sair()">mmmmmmmmmmmmmm</button>
-
-    <!-- Slideshow -->
-    <div id="slideshow">
-        <img src="https://www.aogopa.com/assets/wt2-BA93ok9f.svg" class="slide">
-        <img src="https://www.aogopa.com/assets/foot-CV86p-64.png" class="slide">
-        <img src="https://api.united976.com/upload/image/20240721/65d041449208ebadd6f62b24b2a1963d.png" class="slide">
-        <img src="https://api.united976.com/upload/image/20240721/903f220e7e20970f35e352a912ff39b2.png" class="slide">
-        <img src="https://api.united976.com/upload/image/20240721/b001eabceb7b9c8182d6676c74e4d7fc.png" class="slide">
-        <img src="https://www.aogopa.com/assets/bfoot-29n_kIdH.png" class="slide">
-        <img src="https://www.aogopa.com/assets/bfoot-29n_kIdH.png" class="slide">
-        <img src="https://www.aogopa.com/assets/bfoot-29n_kIdH.png" class="slide">
-        <img src="https://www.aogopa.com/assets/bfoot-29n_kIdH.png" class="slide">
-        <img src="https://www.aogopa.com/assets/bfoot-29n_kIdH.png" class="slide">
-    </div>
-
-    <!-- Conteúdo -->
-    <div class="content">
-        <!-- Card com nome e ID -->
-        <div id="user-info-card">
-            <h1>Bem-vindo, <span id="userName">Usuário</span></h1>
-            <p>Seu ID: <span id="userId">Carregando...</span>
-                <button class="copy-btn" id="copyBtn">Copiar</button>
-            </p>
-        </div>
-
-        <!-- Card com saldo e botões -->
-        <div id="balance-card">
-            <p>Saldo: <span id="userBalance">AOA 0,00</span></p>
-            
-            <!-- Botões para recarregar e sacar -->
-            <a href="recarregar.html" class="action-btn">
-                <img src="https://www.aogopa.com/assets/wt2-BA93ok9f.svg" class="btn-logo" alt="Logotipo Recarregar">
-                Recarregar
-            </a>
-            <a href="sacar.html" class="action-btn">
-                <img src="https://www.aogopa.com/assets/wt2-BA93ok9f.svg" class="btn-logo" alt="Logotipo Sacar">
-                Sacar
-            </a>
+    <div class="container">
+        <div class="solar-panel">
+            <h1>Estamos em atualização</h1>
+            <p>Prometemos que a atualização trará mais benefícios a todos os investidores.</p>
+            <p>Prometemos que volte novamente no site hoje às 16h. Obrigado pela paciência.</p>
+            <p class="large-text">Estamos tratando de todos os problemas que ocorreram com nossos investidores.</p>
         </div>
     </div>
-
-    <script>
-        // Função para o slideshow
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide');
-        const totalSlides = slides.length;
-
-        function showSlide() {
-            slides.forEach((slide, index) => {
-                slide.style.display = 'none'; // Oculta todas as imagens
-            });
-
-            currentSlide = (currentSlide + 1) % totalSlides; // Avança para o próximo slide
-            slides[currentSlide].style.display = 'block'; // Exibe o slide atual
-
-            setTimeout(showSlide, 1000); // Muda a imagem a cada 1 segundos
-        }
-
-        // Mostrar o conteúdo após o slideshow
-        window.onload = function () {
-            setTimeout(function () {
-                document.querySelector('.content').style.display = 'block'; // Exibe o conteúdo após o slideshow
-            }, 1000); // Aguarda o slideshow rodar por 3 segundos antes de mostrar o conteúdo
-
-            showSlide(); // Inicia o slideshow
-        };
-
-        // Função para copiar o ID para a área de transferência
-        document.getElementById('copyBtn').addEventListener('click', function () {
-            const userId = document.getElementById('userId').textContent;
-            navigator.clipboard.writeText(userId).then(function () {
-                alert('ID copiado para a área de transferência!');
-            }).catch(function (err) {
-                alert('Erro ao copiar: ' + err);
-            });
-        });
-
-        // Função para redirecionar para o dashboard
-        function sair() {
-            window.location.href = 'dashboard.html'; // Redireciona para o dashboard
-        }
-
-        document.addEventListener('DOMContentLoaded', function () {
-            const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
-
-            if (!usuarioLogado) {
-                window.location.href = 'index.html'; // Redirecionar para o login
-            } else {
-                document.getElementById('userName').textContent = usuarioLogado.nome || 'Desconhecido';
-                document.getElementById('userId').textContent = usuarioLogado.id || 'Desconhecido';
-                document.getElementById('userBalance').textContent = `AOA ${usuarioLogado.saldo || '0,00'}`;
-            }
-
-            // Função para copiar o ID para a área de transferência
-            document.getElementById('copyBtn').addEventListener('click', function() {
-                const userId = document.getElementById('userId').textContent;
-                navigator.clipboard.writeText(userId).then(function() {
-                    alert('ID copiado para a área de transferência!');
-                }).catch(function(err) {
-                    alert('Erro ao copiar: ' + err);
-                });
-            });
-        });
-    </script>
-
 </body>
 </html>

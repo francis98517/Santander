@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Informações sobre Investimentos - Vercel</title>
+    <title>Atualização do Sistema</title>
     <style>
+        /* Reset básico de estilos */
         * {
             margin: 0;
             padding: 0;
@@ -12,198 +13,54 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
-            background-image: url(https://united976.com/static/colorIcon/img/myBg.png);
+            font-family: Arial, sans-serif;
+            background-color: #e0f7fa;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            color: #333;
+            color: white;
         }
 
         .container {
-            width: 100%;
-            max-width: 600px;
-            background-image: url(https://united976.com/static/colorIcon/img/myBg.png);
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
-            border: 1px solid #b2ebf2; /* Azul água mais forte */
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
+            text-align: center;
+            padding: 20px;
+            max-width: 800px;
         }
 
-        h2 {
-            text-align: center;
-            color: #00796b; /* Verde escuro para contraste */
-            font-size: 28px;
+        .solar-panel {
+            background: linear-gradient(to right, #0077b6, #00b4d8);
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            color: white;
+        }
+
+        h1 {
+            font-size: 2.5rem;
             margin-bottom: 20px;
         }
 
-        .bonus {
-            background-color: #e0f7fa; /* Azul água claro */
-            padding: 15px;
-            border-radius: 8px;
-            border: 1px solid #b2ebf2;
-            text-align: center;
+        p {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
         }
 
-        .bonus p {
-            font-size: 20px;
-            color: #00796b; /* Verde escuro */
+        .large-text {
+            font-size: 2rem;
+            margin-top: 30px;
             font-weight: bold;
-        }
-
-        .pergunta {
-            padding: 12px;
-            margin: 8px 0;
-            background-color: #ffffff;
-            border: 1px solid #b2ebf2;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .pergunta:hover {
-            background-color: #b2ebf2;
-        }
-
-        .resposta {
-            display: none;
-            padding: 10px;
-            background-color: #e0f7fa;
-            border-left: 5px solid #00796b; /* Verde escuro */
-            border-radius: 8px;
-        }
-
-        footer {
-            text-align: center;
-            font-size: 14px;
-            margin-top: 20px;
-            color: #00796b;
-        }
-
-        .feedback {
-            text-align: center;
-            font-size: 14px;
-            font-weight: 600;
-            margin-top: 20px;
-        }
-
-        .feedback.error {
-            color: #e74c3c;
-        }
-
-        .feedback.success {
-            color: #2ecc71;
-        }
-
-        a {
-            color: #00796b; /* Verde escuro */
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 600;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        /* Media Queries */
-        @media (max-width: 768px) {
-            .container {
-                padding: 20px;
-            }
-
-            h2 {
-                font-size: 24px;
-            }
-
-            .pergunta {
-                font-size: 16px;
-            }
-
-            .resposta {
-                font-size: 14px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            h2 {
-                font-size: 20px;
-            }
-
-            .pergunta {
-                font-size: 14px;
-                padding: 10px;
-            }
-
-            .resposta {
-                font-size: 12px;
-                padding: 8px;
-            }
-
-            footer {
-                font-size: 12px;
-            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>Informações sobre Investimentos</h2>
-
-        <div class="bonus">
-            <p>Ganhe até 7% de renda diária com investimentos de produtos!</p>
+        <div class="solar-panel">
+            <h1>Estamos em atualização</h1>
+            <p>Prometemos que a atualização trará mais benefícios a todos os investidores.</p>
+            <p>Prometemos que volte novamente no site hoje às 16h. Obrigado pela paciência.</p>
+            <p class="large-text">Estamos tratando de todos os problemas que ocorreram com nossos investidores.</p>
         </div>
-
-        <!-- Perguntas e respostas sobre investimentos -->
-        <div class="pergunta" onclick="toggleResposta('resposta1')">
-            O que é um investimento seguro?
-        </div>
-        <div id="resposta1" class="resposta">
-            Um investimento seguro é aquele que apresenta menor risco de perda de capital, geralmente associado a ativos de baixo risco, como títulos da nossa empresa.
-        </div>
-
-        <div class="pergunta" onclick="toggleResposta('resposta2')">
-            Como posso aumentar o valor do meu investimento?
-        </div>
-        <div id="resposta2" class="resposta">
-            Para aumentar o valor de seus investimentos, diversifique sua carteira, invista regularmente e busque opções de maior rentabilidade.
-        </div>
-
-        <div class="pergunta" onclick="toggleResposta('resposta3')">
-            O que são produtos e como funcionam?
-        </div>
-        <div id="resposta3" class="resposta">
-            Produtos são ativos nos quais você investe. Você pode lucrar diariamente com a valorização ou pagamento de eventos.
-        </div>
-
-        <div class="pergunta" onclick="toggleResposta('resposta4')">
-            Qual é o melhor momento para investir?
-        </div>
-        <div id="resposta4" class="resposta">
-            O melhor momento para investir depende dos seus objetivos. Quanto antes, melhor para aproveitar os benefícios do tempo e juros compostos.
-        </div>
-
-        <div class="pergunta" onclick="toggleResposta('resposta5')">
-            Como vou lucrar ao investir em produtos?
-        </div>
-        <div id="resposta5" class="resposta">
-            Você lucra conforme o desempenho do produto, com uma rentabilidade diária de 10%.
-        </div>
-
-        <footer>
-            <p>Dicas de Investimento - Seu guia para um futuro financeiro melhor.</p>
-        </footer>
     </div>
-
-    <script>
-        function toggleResposta(id) {
-            const resposta = document.getElementById(id);
-            resposta.style.display = resposta.style.display === 'block' ? 'none' : 'block';
-        }
-    </script>
 </body>
 </html>

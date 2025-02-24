@@ -1,183 +1,66 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Depósito</title>
+    <title>Atualização do Sistema</title>
     <style>
+        /* Reset básico de estilos */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            background-image: url(https://api.united976.com/upload/image/20240721/903f220e7e20970f35e352a912ff39b2.png);
-            color: white; /* Cor do texto branco */
             font-family: Arial, sans-serif;
+            background-color: #e0f7fa;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0;
-            text-align: center;
-            overflow: hidden; /* Impede rolagem da página */
-            position: relative;
-        }
-
-        .logo {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            width: 40px; /* Tamanho do ícone */
-            background-image: url(https://www.aogopa.com/assets/w-left-Dsh92OaU.svg);
-            background-image: url(https://www.aogopa.com/assets/w-left-Dsh92OaU.svg);
-            background-image: url(https://www.aogopa.com/assets/w-left-Dsh92OaU.svg);
-            justify-content: space-between;
-            cursor: pointer;
-        }
-
-        .bar {
-            height: 5px;
-            background-image: url(https://api.united976.com/upload/image/20240721/903f220e7e20970f35e352a912ff39b2.png);
-            border-radius: 5px;
+            color: white;
         }
 
         .container {
-            padding: 30px;
+            text-align: center;
+            padding: 20px;
+            max-width: 800px;
+        }
+
+        .solar-panel {
+            background: linear-gradient(to right, #0077b6, #00b4d8);
             border-radius: 10px;
-            background-image: url(https://api.united976.com/upload/image/20240721/903f220e7e20970f35e352a912ff39b2.png);
-            width: 80%;
-            max-width: 500px;
-            position: relative;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            color: white;
         }
 
         h1 {
+            font-size: 2.5rem;
             margin-bottom: 20px;
-            font-size: 24px;
         }
 
-        .banco-btn {
-            padding: 15px 30px;
-            margin: 10px;
-            font-size: 18px;
-            background-color: white;
-            color: #00bcd4; /* Azul claro para os botões */
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            width: 200px;
-            transition: background-color 0.3s, transform 0.2s;
+        p {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
         }
 
-        .banco-btn:hover {
-            background-color: #4dd0e1; /* Azul claro ao passar o mouse */
-            transform: scale(1.1); /* Efeito de aumentar o tamanho ao passar o mouse */
-        }
-
-        .dicas {
+        .large-text {
+            font-size: 2rem;
             margin-top: 30px;
-            font-size: 14px;
-            background-image: url(https://www.aogopa.com/assets/home-noti-CyBBgD-v.png);
-            color: #004d40; /* Texto escuro para contraste */
-            padding: 15px;
-            border-radius: 5px;
-            line-height: 1.5;
-        }
-
-        .dicas h3 {
-            margin-top: 0;
-            font-size: 16px;
-        }
-
-        /* Responsividade */
-        @media (max-width: 768px) {
-            .container {
-                width: 90%;
-                padding: 20px;
-            }
-
-            h1 {
-                font-size: 20px;
-            }
-
-            .banco-btn {
-                width: 100%;
-                padding: 12px;
-                font-size: 16px;
-            }
-
-            .dicas {
-                font-size: 12px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                width: 90%;
-                padding: 15px;
-            }
-
-            h1 {
-                font-size: 18px;
-            }
-
-            .banco-btn {
-                padding: 10px;
-                font-size: 14px;
-            }
-
-            .dicas {
-                font-size: 10px;
-            }
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
-
-    <!-- Link para o histórico de depósitos -->
-    <a href="historico_depositos.html">
-        <div class="logo">
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-        </div>
-    </a>
-
     <div class="container">
-        <h1>Escolha o seu banco</h1>
-        
-        <button class="banco-btn" onclick="irParaBanco('BFA')">BFA</button>
-        <button class="banco-btn" onclick="irParaBanco('BAI')">BAI</button>
-        <button class="banco-btn" onclick="irParaBanco('ATLANTICO')">ATLÂNTICO</button>
-        <button class="banco-btn" onclick="irParaBanco('OUTROS')">OUTROS BANCOS</button>
-        
-        <div class="dicas">
-            <h3>Informações importantes:</h3>
-            <ul>
-                <li><strong>Horário de depósito:</strong> de segunda a domingo, das 9h às 22h.</li>
-                <li><strong>Confirme os dados:</strong> Verifique os dados do banco antes de finalizar o depósito.</li>
-                <li><strong>Depósito seguro:</strong> Aconselhamos não compartilhar os detalhes da sua conta bancária.</li>
-                <li><strong>Fique atento:</strong> Certifique-se de que o seu pagamento foi processado antes de sair.</li>
-            </ul>
+        <div class="solar-panel">
+            <h1>Estamos em atualização</h1>
+            <p>Prometemos que a atualização trará mais benefícios a todos os investidores.</p>
+            <p>Prometemos que volte novamente no site hoje às 16h. Obrigado pela paciência.</p>
+            <p class="large-text">Estamos tratando de todos os problemas que ocorreram com nossos investidores.</p>
         </div>
     </div>
-
-    <script>
-        function irParaBanco(bancoSelecionado) {
-            // Redireciona para a página correspondente
-            switch(bancoSelecionado) {
-                case 'BFA':
-                    window.location.href = "bfa.html";  // Página do BFA
-                    break;
-                case 'BAI':
-                    window.location.href = "bai.html";  // Página do BAI
-                    break;
-                case 'ATLANTICO':
-                    window.location.href = "atlantico.html";  // Página do ATLÂNTICO
-                    break;
-                case 'OUTROS':
-                    window.location.href = "outros_bancos.html";  // Página para OUTROS BANCOS
-                    break;
-                default:
-                    alert("Selecione um banco!");
-            }
-        }
-    </script>
-
 </body>
 </html>
